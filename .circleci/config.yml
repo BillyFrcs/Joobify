@@ -27,7 +27,7 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
       - run:
-          name: Run ci
+          name: Running npm
           command: npm ci
                    npm build
 
