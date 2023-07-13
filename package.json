@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BillyFrcs/Joobify/tree/dev"
+    "url": "https://github.com/BillyFrcs/Joobify"
   },
   "engines": {
     "node": "18"
