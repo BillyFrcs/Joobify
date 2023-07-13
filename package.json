@@ -1,6 +1,7 @@
 {
   "name": "joobify",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Joobify App FrontEnd",
   "private": true,
   "scripts": {
     "dev": "next dev",
