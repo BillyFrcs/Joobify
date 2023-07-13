@@ -8,6 +8,15 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BillyFrcs/Joobify"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "author": "Billy Franscois",
+  "license": "MIT",
   "dependencies": {
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
