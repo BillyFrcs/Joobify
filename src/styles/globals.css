@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+.main-navbar {
+  box-shadow: 0 0px 7px -2px #373737;
+}
+
+.joobify-main-color {
+  background-color: #5B71C8;
+}
+
+.joobify-black-color {
+  background-color: #373737;
+}
+
+.joobify-main-color:hover { 
+  background-color: #373737;
+}
+
+.joobify-black-color:hover { 
+  background-color: #5B71C8;
+}
+
+.main-btn {
+  transition-duration: 0.5s;
+}
+
+.main-text {
+  font-size: medium;
+}
+
+.main-text:hover {
+  color:#5B71C8;
+}
+
+/* Default tailwindcss
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,7 +57,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} 
+*/
 
 /* Default css
 :root {
@@ -46,6 +80,7 @@ body {
     #0071ff33 160deg,
     transparent 360deg
   );
+
   --secondary-glow: radial-gradient(
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0)
