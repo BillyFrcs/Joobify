@@ -3,11 +3,11 @@ import React from 'react';
 import '../../styles/globals.css';
 
 export const metadata = {
-    title: 'Sign Up | Joobify',
-    description: 'Joobify Sign Up Page',
+    title: 'Profile | Joobify',
+    description: 'Joobify User Profile Page',
 }
 
-export default function SignUpLayout({ children }) {
+export default function ProfileLayout({ children }) {
     return (
         <html lang="en">
             <body>

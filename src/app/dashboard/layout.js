@@ -9,10 +9,10 @@ export const metadata = {
 
 export default function DashboardLayout({ children }) {
     return (
-        <div>
-            <main>
+        <html lang="en">
+            <body>
                 {children}
-            </main>
-        </div>
+            </body>
+        </html>
     )
 }

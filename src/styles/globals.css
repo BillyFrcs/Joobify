@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,16 +24,58 @@
   background-color: #5B71C8;
 }
 
+.black-color {
+  color: #373737;
+  font-family: 'Rubik', sans-serif;
+}
+
+.main-color {
+  color: #5B71C8;
+  font-family: 'Rubik', sans-serif;
+}
+
+.main-font {
+  font-family: 'Rubik', sans-serif;
+}
+
 .main-btn {
   transition-duration: 0.5s;
 }
 
 .main-text {
   font-size: medium;
+  font-family: 'Rubik-light', sans-serif;
 }
 
 .main-text:hover {
   color:#5B71C8;
+}
+
+.image-container {
+  right: 11rem;
+}
+
+.forgot-password {
+  color:#5B71C8;
+  font-family: 'Rubik', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.light-font {
+  font-family: 'Rubik-light', sans-serif;
+}
+
+.new-to-joobify {
+  font-size: 13px;
+}
+
+.join-now {
+  font-weight: bold !important;
+}
+
+.btn-style {
+  box-shadow: 0 2px 9px -5px #373737;
 }
 
 /* Default tailwindcss

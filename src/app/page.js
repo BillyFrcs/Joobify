@@ -1,12 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
 
-import Nav from '../components/navbar';
+import { Navigation } from '../components/navbar';
 
 function Home() {
   return (
-      <div>
-          <Nav />
+    <div>
+      <Navigation />
     </div>
   )
 };

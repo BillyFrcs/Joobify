@@ -1,10 +1,15 @@
 import React from 'react';
 
+import { SimpleNavigation } from '../../components/navbar';
+import SignUpForm from '@/components/signup';
+
 function SignUp() {
   return (
-    <div>
-      <h1>Sign Up</h1>
-    </div>
+    <body>
+      <SimpleNavigation />
+      
+      <SignUpForm />
+    </body>
   )
 };
 

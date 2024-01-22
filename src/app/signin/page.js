@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
+
+import SignInForm from '../../components/signin';
+import { SimpleNavigation } from '@/components/navbar';
 
 function SignIn() {
   return (
-    <div>
-      <h1>Sign In</h1>
-    </div>
+    <body>
+      <SimpleNavigation />
+
+      <SignInForm />
+    </body>
   );
 };
 
