@@ -54,13 +54,13 @@ const Navigation = () => {
             <Link href="/dashboard">Dashboard</Link>
           </DropdownItem>
           <DropdownDivider />
-          <DropdownItem>Sign out</DropdownItem>
+          <DropdownItem className='hover:bg-red-500' color='red'>Sign out</DropdownItem>
         </Dropdown> */}
 
         <NavbarToggle />
       </div>
 
-      <NavbarCollapse>
+      <NavbarCollapse className='justify-center'>
         <NavbarLink className="main-text mr-5" href="#home">Home</NavbarLink>
         <NavbarLink className="main-text mr-5" href="#jobs">Jobs</NavbarLink>
         <NavbarLink className="main-text mr-5" href="#about">About</NavbarLink>
@@ -72,7 +72,7 @@ const Navigation = () => {
 
 const SimpleNavigation = () => {
   return (
-    <Navbar fluid rounded className=''>
+    <Navbar fluid rounded>
       <NavbarBrand href="">
         <Image className="mr-3 ml-0 h-6 sm:h-10" src="/images/JoobifyLogo.svg" width={200} height={200} alt="Joobify Logo" />
       </NavbarBrand>

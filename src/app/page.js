@@ -5,9 +5,13 @@ import { Navigation } from '../components/navbar';
 
 function Home() {
   return (
-    <div>
-      <Navigation />
-    </div>
+    <html lang='en'>
+      <head></head>
+      
+      <body>
+        <Navigation />
+      </body>
+    </html>
   )
 };
 

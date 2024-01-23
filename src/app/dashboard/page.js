@@ -1,10 +1,14 @@
 import React from 'react';
-  
+
 const Dashboard = () => {
     return (
-        <body>
-            <h1>Dashboard</h1>
-        </body>
+        <html lang='en'>
+            <head></head>
+
+            <body>
+                <h1>Dashboard</h1>
+            </body>
+        </html>
     );
 };
 

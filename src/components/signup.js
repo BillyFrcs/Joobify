@@ -32,7 +32,7 @@ const SignUpForm = () => {
                     Sign up
                 </Button>
 
-                <span className='black mt-2 text-center black-color new-to-joobify'>or</span>
+                <span className='mt-2 text-center black-color new-to-joobify light-font'>or</span>
 
                 <Button type='button' className="mt-2 btn-style light-font" color="light" pill>
                     <FcGoogle className='mr-2' /> Continue with Google

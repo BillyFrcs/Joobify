@@ -5,11 +5,15 @@ import SignUpForm from '@/components/signup';
 
 function SignUp() {
   return (
-    <body>
-      <SimpleNavigation />
-      
-      <SignUpForm />
-    </body>
+    <html lang='en'>
+      <head></head>
+
+      <body>
+        <SimpleNavigation />
+
+        <SignUpForm />
+      </body>
+    </html>
   )
 };
 

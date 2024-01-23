@@ -10,6 +10,8 @@ export const metadata = {
 export default function ProfileLayout({ children }) {
     return (
         <html lang="en">
+            <head></head>
+
             <body>
                 {children}
             </body>
