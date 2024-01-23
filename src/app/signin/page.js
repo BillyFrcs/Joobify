@@ -5,15 +5,11 @@ import { SimpleNavigation } from '@/components/navbar';
 
 function SignIn() {
   return (
-    <html lang='en'>
-      <head></head>
+    <div>
+      <SimpleNavigation />
 
-      <body>
-        <SimpleNavigation />
-
-        <SignInForm />
-      </body>
-    </html>
+      <SignInForm />
+    </div>
   );
 };
 
