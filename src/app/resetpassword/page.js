@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Profile = () => {
+const ResetPassword = () => {
     return (
         <html lang="en">
             <head></head>
@@ -12,4 +12,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ResetPassword;

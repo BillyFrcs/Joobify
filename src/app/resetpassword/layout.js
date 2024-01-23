@@ -7,7 +7,7 @@ export const metadata = {
     description: 'Joobify Reset Password Page',
 }
 
-export default function ProfileLayout({ children }) {
+export default function ResetPasswordLayout({ children }) {
     return (
         <html lang="en">
             <head></head>

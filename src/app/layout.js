@@ -8,16 +8,7 @@ import '../styles/globals.css';
 
 export const metadata = {
   title: 'Home | Joobify',
-  description: 'Joobify Home Page',
-  icons: {
-    icon: [
-      {
-        media: '(prefers-color-scheme: light)',
-        url: '/images/JoobifyFavicon.svg',
-        href: '/images/JoobifyFavicon.svg'
-      }
-    ]
-  }
+  description: 'Joobify Home Page'
 }
 
 export default function RootLayout({ children }) {
