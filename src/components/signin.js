@@ -39,7 +39,7 @@ const SignInForm = () => {
             </form>
 
             <div className="flex justify-center absolute top-14 image-container max-w-full h-auto">
-                <Image className="mt-10" src="/images/signin.svg" width={700} height={700} alt="Sign In Button" />
+                <Image className="mt-10 auth-image" src="/images/signin.svg" width={0} height={0} priority={true} alt="Sign In Button" />
             </div>
         </main>
     );

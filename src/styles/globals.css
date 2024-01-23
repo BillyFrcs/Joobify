@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.auth-image {
+  width: 700px;
+  height: auto;
+}
+
 .main-navbar {
   box-shadow: 0 0px 7px -2px #373737;
 }

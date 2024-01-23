@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <Navbar fluid rounded className='main-navbar'>
       <NavbarBrand href="">
-        <Image className="mr-3 ml-0 h-6 sm:h-10" src="/images/JoobifyLogo.svg" width={200} height={200} alt="Joobify Logo" />
+        <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
 
         {/* <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span> */}
 
@@ -74,7 +74,7 @@ const SimpleNavigation = () => {
   return (
     <Navbar fluid rounded>
       <NavbarBrand href="">
-        <Image className="mr-3 ml-0 h-6 sm:h-10" src="/images/JoobifyLogo.svg" width={200} height={200} alt="Joobify Logo" />
+        <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
       </NavbarBrand>
     </Navbar>
   );
