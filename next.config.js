@@ -4,7 +4,9 @@ const nextConfig = {
     swcMinify: true,
     env: {
         joobifyEndpoint: process.env.JOOBIFY_ENDPOINT
-    },
+    }
+    
+    /*
     async rewrites() {
         return [
             {
@@ -13,6 +15,7 @@ const nextConfig = {
             }
         ];
     }
+    */
 }
 
 module.exports = nextConfig
