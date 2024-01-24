@@ -7,7 +7,7 @@ import {
   Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Avatar
 } from 'flowbite-react';
 
-import '../styles/globals.css';
+import '../../styles/globals.css';
 
 const Navigation = () => {
   return (

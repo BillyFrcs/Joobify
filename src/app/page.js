@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { Navigation } from '../components/navbar';
+import { Navigation } from '../components/layouts/navbar';
 
 function Home() {
   return (

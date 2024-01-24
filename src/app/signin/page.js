@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SignInForm from '../../components/signin';
-import { SimpleNavigation } from '@/components/navbar';
+import SignInForm from '../../components/auth/signin';
+import { SimpleNavigation } from '@/components/layouts/navbar';
 
 function SignIn() {
   return (
