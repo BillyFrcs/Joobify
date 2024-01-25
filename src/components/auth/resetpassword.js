@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 
 import { Button, Modal } from 'flowbite-react';
 import { BsFillSendCheckFill } from "react-icons/bs";
@@ -14,6 +14,8 @@ const ResetPasswordForm = () => {
     const [error, setError] = useState(null)
 
     const [openModal, setOpenModal] = useState(false);
+
+    const [inputValue, setInputValue] = useState('');
 
     const closeModal = () => {
         setOpenModal(false);
@@ -54,6 +56,8 @@ const ResetPasswordForm = () => {
             if (data !== null) {
                 setOpenModal(true);
 
+                setInputValue('');
+
                 // console.log(data);
             }
         } catch (error) {
@@ -85,7 +89,7 @@ const ResetPasswordForm = () => {
 
                 <form method='post' onSubmit={SubmitResetPassword} className="mt-6 grid grid-flow-row justify-start">
                     <div className="mb-4">
-                        <input type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
+                        <input type="email" value={inputValue} onChange={(e) => setInputValue(e.target.value)} id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
                     </div>
 
                     {/* <span className='text-red-500'>Please enter your email!</span> */}
