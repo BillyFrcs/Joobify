@@ -26,14 +26,15 @@ const Navigation = () => {
 
       <div className="flex md:order-2">
         <div className="mr-3">
-          <Button className="joobify-black-color main-btn">
-            <Link className="main-font" href="/signin">Sign in</Link>
-          </Button>
+          <Link className="main-font" href="/signin">
+            <Button className="joobify-black-color main-btn">Sign in</Button>
+          </Link>
         </div>
+
         <div className="mr-3">
-          <Button className="joobify-main-color main-btn ">
-            <Link className="main-font" href="/signup">Sign up</Link>
-          </Button>
+          <Link className="main-font" href="/signup">
+            <Button className="joobify-main-color main-btn">Sign up</Button>
+          </Link>
         </div>
 
         {/* <Dropdown
