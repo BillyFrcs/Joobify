@@ -10,7 +10,7 @@ const SignInForm = () => {
             <h1 className="font-bold black-color text-4xl">WELCOME</h1>
             <h1 className="font-bold black-color text-4xl">TO <span className="main-color">JOOBIFY</span></h1>
 
-            <form method='' className="mt-6 grid grid-flow-row justify-start">
+            <form method='POST' className="mt-6 grid grid-flow-row justify-start">
                 <div className="mb-4">
                     <label htmlFor="email" className="black-color w-80 block mb-2 text-sm font-medium text-gray-900 dark:text-white light-font">Email address</label>
                     <input type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
@@ -18,7 +18,7 @@ const SignInForm = () => {
 
                 <div className="mb-4">
                     <label htmlFor="password" className="black-color w-80 block mb-2 text-sm font-medium text-gray-900 dark:text-white light-font">Your password</label>
-                    <input type="password" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required={true} />
+                    <input type="password" autoComplete="on" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required={true} />
                 </div>
 
                 <Link className="forgot-password" href="/resetpassword">Forgot password?</Link>
