@@ -13,17 +13,6 @@ const nextConfig = {
         APP_ID: process.env.APP_ID,
         MEASUREMENT_ID: process.env.MEASUREMENT_ID
     }
-
-    /*
-    async rewrites() {
-        return [
-            {
-                source: "/auth/resetPassword",
-                destination: `${process.env.JOOBIFY_ENDPOINT}/auth/resetPassword`
-            }
-        ];
-    }
-    */
 }
 
 module.exports = nextConfig
