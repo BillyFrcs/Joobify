@@ -3,16 +3,15 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     env: {
-        JoobifyEndpoint: process.env.JOOBIFY_ENDPOINT,
-
-        ApiKey: process.env.API_KEY,
-        AuthDomain: process.env.AUTH_DOMAIN,
-        DatabaseURL: process.env.DATABASE_URL,
-        ProjectID: process.env.PROJECT_ID,
-        StorageBucket: process.env.STORAGE_BUCKET,
-        MessagingSenderID: process.env.MESSAGING_SENDER_ID,
-        AppID: process.env.APP_ID,
-        MeasurementID: process.env.MEASUREMENT_ID
+        JOOBIFY_ENDPOINT: process.env.JOOBIFY_ENDPOINT,
+        API_KEY: process.env.API_KEY,
+        AUTH_DOMAIN: process.env.AUTH_DOMAIN,
+        DATABASE_URL: process.env.DATABASE_URL,
+        PROJECT_ID: process.env.PROJECT_ID,
+        STORAGE_BUCKET: process.env.STORAGE_BUCKET,
+        MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
+        APP_ID: process.env.APP_ID,
+        MEASUREMENT_ID: process.env.MEASUREMENT_ID
     }
 
     /*

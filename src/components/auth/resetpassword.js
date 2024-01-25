@@ -35,7 +35,7 @@ const ResetPasswordForm = () => {
                 email: event.target.email.value
             };
 
-            const response = await fetch(process.env.JoobifyEndpoint + '/auth/resetPassword', {
+            const response = await fetch(process.env.JOOBIFY_ENDPOINT + '/auth/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const ResetPasswordForm = () => {
                             </h3>
 
                             <div className="flex justify-center gap-4">
-                                <Button color="success" onClick={() => closeModal()}>
+                                <Button className='btn-style light-font' color="success" onClick={() => closeModal()}>
                                     {"Okay"}
                                 </Button>
                             </div>
