@@ -35,7 +35,7 @@ const ResetPasswordForm = () => {
                 email: event.target.email.value
             };
 
-            const response = await fetch(process.env.joobifyEndpoint + '/auth/resetPassword', {
+            const response = await fetch(process.env.JoobifyEndpoint + '/auth/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,8 +95,8 @@ const ResetPasswordForm = () => {
                     {/* <span className='text-red-500'>Please enter your email!</span> */}
 
                     <div className='flex justify-start mt-2'>
-                        <Button type='submit' className='ml-0 joobify-main-color light-font'>Submit</Button>
-                        <Button type='submit' className='ml-3 light-font' color="failure">
+                        <Button type='submit' className='ml-0 btn-style joobify-main-color light-font'>Submit</Button>
+                        <Button type='submit' className='ml-3 btn-style light-font' color="failure">
                             <Link href="/signin">Cancel</Link>
                         </Button>
                     </div>
