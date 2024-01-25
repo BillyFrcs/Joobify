@@ -27,21 +27,9 @@ const Profile = () => {
         return () => unsubscribe();
     }, [auth, router]);
 
-    const signOutUser = async () => {
-        try {
-            await signOut(auth);
-
-            router.push('/');
-        } catch (error) {
-            console.error('Error signing out with Google: ', error.message);
-        }
-    };
-
     return (
         <div>
             <h1>Welcome {user ? user.displayName : 'Guest'}</h1>
-
-            <Button onClick={signOutUser} color='failure'>Sign Out</Button>
         </div>
     );
 };

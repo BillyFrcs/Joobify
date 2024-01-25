@@ -45,18 +45,6 @@ const GoogleAuth = () => {
         <Button type='button' onClick={signInWithGoogle} className="mt-2 btn-style light-font" color="light" pill>
             <FcGoogle className='mr-2' /> Continue with Google
         </Button>
-
-        /*
-        <div className=''>
-            {user ? (
-                router.push('/profile')
-            ) : (
-                <Button type='button' onClick={signInWithGoogle} className="w-80 mt-2 btn-style light-font" color="light" pill>
-                    <FcGoogle className='mr-2' /> Continue with Google
-                </Button>
-            )}
-        </div>
-        */
     )
 };
 
