@@ -73,7 +73,7 @@ const Navigation = () => {
 const SimpleNavigation = () => {
   return (
     <Navbar fluid rounded>
-      <NavbarBrand href="">
+      <NavbarBrand href="/">
         <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
       </NavbarBrand>
     </Navbar>
