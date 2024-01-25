@@ -73,7 +73,7 @@ const ResetPasswordForm = () => {
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10'>
             <div className="flex justify-start top-14 image-container max-w-full h-auto">
-                <Image className="forgot-password-image" src="/images/forgot-password.svg" width={0} height={0} priority={true} alt="Forgot Password image" />
+                <Image className="forgot-password-image" src="/images/forgotPassword.svg" width={0} height={0} priority={true} alt="Forgot Password image" />
             </div>
 
             <div className='grid absolute ml-80 pl-80 justify-end pt-32'>
