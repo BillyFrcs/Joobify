@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from 'flowbite-react';
-import { FcGoogle } from "react-icons/fc";
+
+import GoogleAuth from './googleauth';
 
 const SignUpForm = () => {
     return (
@@ -34,9 +39,11 @@ const SignUpForm = () => {
 
                 <span className='mt-2 text-center black-color new-to-joobify light-font'>or</span>
 
-                <Button type='button' className="mt-2 btn-style light-font" color="light" pill>
+                {/* <Button type='button' className="mt-2 btn-style light-font" color="light" pill>
                     <FcGoogle className='mr-2' /> Continue with Google
-                </Button>
+                </Button> */}
+
+                <GoogleAuth />
 
                 <span className='mt-5 text-center black-color new-to-joobify pb-5 mb-5'>Already on Joobify? <Link href="/signin" className="main-color join-now font-bold">Sign in</Link></span>
             </form>
