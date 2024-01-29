@@ -62,7 +62,7 @@ const Navigation = () => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar className="mr-5" alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                  <Avatar className="mr-5" alt="User settings" img= {user.photoURL} rounded />
                 }
               >
                 <DropdownHeader>
