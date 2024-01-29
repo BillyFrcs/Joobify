@@ -8,6 +8,8 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'flowbite-react';
 import { BsFillSendCheckFill } from "react-icons/bs";
 
+import { joobifyEndpoint } from '@/utils/api';
+
 const ResetPasswordForm = () => {
     // const [isLoading, setIsLoading] = useState(false)
 
@@ -35,7 +37,7 @@ const ResetPasswordForm = () => {
                 email: event.target.email.value
             };
 
-            const response = await fetch(process.env.JOOBIFY_ENDPOINT + '/auth/resetPassword', {
+            const response = await fetch(`${joobifyEndpoint}/auth/resetPassword`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,0 +1,1 @@
+export const joobifyEndpoint = process.env.JOOBIFY_ENDPOINT;
