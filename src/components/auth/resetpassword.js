@@ -97,7 +97,7 @@ const ResetPasswordForm = () => {
                     <div className='flex justify-start mt-2'>
                         <Button type='submit' className='ml-0 btn-style joobify-main-color light-font'>Submit</Button>
 
-                        <Link href="/signin">
+                        <Link href="/">
                             <Button type='submit' className='ml-3 btn-style light-font' color="failure">Cancel</Button>
                         </Link>
                     </div>
