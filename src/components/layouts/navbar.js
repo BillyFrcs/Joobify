@@ -62,7 +62,7 @@ const Navigation = () => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar className="mr-5" alt="User settings" img= {user.photoURL} rounded />
+                  <Avatar className="mr-5" img={user.photoURL} alt={user.displayName} rounded />
                 }
               >
                 <DropdownHeader>
