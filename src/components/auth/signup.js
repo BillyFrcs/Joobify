@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from 'flowbite-react';
 
 import GoogleAuth from './googleauth';
+
 import { joobifyEndpoint } from '@/utils/api';
 
 const SignUpForm = () => {
@@ -27,7 +28,7 @@ const SignUpForm = () => {
 
     // Form data
     const [formData, setFormData] = useState({
-        // take from the input form
+        // Take from the input form
         name: name,
         email: email,
         password: password
@@ -51,9 +52,11 @@ const SignUpForm = () => {
                 body: JSON.stringify(formData)
             });
 
+            // Get the specific user data
             const result = await response.json();
 
             if (response.ok) {
+                // console.log(result.data.user.stsTokenManager.accessToken);
 
                 // Signup successful, redirect or show success message
                 router.push('/');
@@ -62,7 +65,7 @@ const SignUpForm = () => {
 
                 setIsVisible(true);
 
-                // set the timeout
+                // Set the timeout
                 setTimeout(() => {
                     setIsVisible(false);
                 }, 5000);

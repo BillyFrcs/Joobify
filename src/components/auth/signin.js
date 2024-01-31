@@ -18,6 +18,7 @@ const SignInForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
         setEmail('');
@@ -26,7 +27,7 @@ const SignInForm = () => {
 
     // Form data
     const [formData, setFormData] = useState({
-        // take from the input form
+        // Take from the input form
         email: email,
         password: password
     });
@@ -49,23 +50,21 @@ const SignInForm = () => {
                 body: JSON.stringify(formData)
             });
 
+            // Get the specific user data
             const result = await response.json();
 
             if (response.ok) {
-                // get the specific user data
-                console.log(result.data.user.stsTokenManager.accessToken);
+                // console.log(result.data.user.stsTokenManager.accessToken);
 
-                // set the user data in the local storage
-                // localStorage.setItem('user', JSON.stringify(data));
+                setToken(result.data.user.stsTokenManager.accessToken);
 
-                // Signup successful, redirect or show success message
-                // router.push('/');
+                router.push('/profile');
             } else if (response.status === 500) {
                 setError(result.message);
 
                 setIsVisible(true);
 
-                // set the timeout
+                // Set the timeout
                 setTimeout(() => {
                     setIsVisible(false);
                 }, 5000);
