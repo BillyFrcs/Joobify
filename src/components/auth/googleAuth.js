@@ -7,7 +7,7 @@ import { Button } from 'flowbite-react';
 import { FcGoogle } from "react-icons/fc";
 
 import Profile from '@/app/profile/page';
-import firebaseApp from '@/config/firebase';
+import firebaseApp from '@/config/firebaseApp';
 
 const GoogleAuth = () => {
     const [user, setUser] = useState(null);
@@ -33,11 +33,19 @@ const GoogleAuth = () => {
         const provider = new GoogleAuthProvider();
 
         try {
-            await signInWithPopup(auth, provider);
+            await signInWithPopup(auth, provider).then((result) => {
+                const name = result.user.displayName;
+                const email = result.user.email;
+                const profilePic = result.user.photoURL;
 
-            router.push('/');
+                localStorage.setItem('name', name);
+                localStorage.setItem('email', email);
+                localStorage.setItem('profilePic', profilePic);
+
+                router.push('/');
+            })
         } catch (error) {
-            console.error('Error signing in with Google: ', error.message);
+            // throw new Error(`Error signin with Google: ${error.message}`);
         }
     };
 

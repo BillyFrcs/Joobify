@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from 'flowbite-react';
 
-import GoogleAuth from './googleauth';
+import GoogleAuth from './googleAuth';
 
 import { joobifyEndpoint } from '@/utils/api';
 

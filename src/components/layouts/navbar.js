@@ -11,7 +11,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 
-import firebaseApp from '@/config/firebase';
+import firebaseApp from '@/config/firebaseApp';
 
 import '../../styles/globals.css';
 

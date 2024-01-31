@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ResetPasswordForm from '@/components/auth/resetpassword';
+import ResetPasswordForm from '@/components/auth/resetPassword';
 import { SimpleNavigation } from '@/components/layouts/navbar';
 
 const ResetPassword = () => {
