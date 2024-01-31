@@ -29,7 +29,7 @@ const Profile = () => {
 
     return (
         <div>
-            <h1>Welcome {user ? user.displayName : 'Guest'} to your profile</h1>
+            <h1>Welcome to your profile {user ? user.displayName : 'Guest'} </h1>
         </div>
     );
 };
