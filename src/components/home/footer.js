@@ -1,10 +1,10 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { Button, FloatingLabel } from 'flowbite-react';
 import { FaLinkedin, FaInstagramSquare, FaFacebook, FaRegCopyright } from "react-icons/fa";
+
+import ContactForm from './contact';
 
 const Footer = () => {
     return (
@@ -49,17 +49,7 @@ const Footer = () => {
                     </Link>
                 </div>
 
-                <form method='POST'>
-                    <div className='mt-[-13rem] ml-[50rem]'>
-                        <h5 className="font-medium mt-1 black-color text-2xl">Contact us</h5>
-
-                        <FloatingLabel className='w-[28rem]' variant="standard" label="Name" required />
-                        <FloatingLabel className='w-[28rem]' variant="standard" label="Email" required />
-                        <FloatingLabel className='w-[28rem]' variant="standard" label="Description" required />
-
-                        <Button type='submit' className='mt-8 btn-style main-font light-font joobify-main-color'>Submit</Button>
-                    </div>
-                </form>
+                <ContactForm />
             </div>
 
             <div>
