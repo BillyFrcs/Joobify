@@ -13,7 +13,7 @@ const Footer = () => {
 
             <div className='grid grid-cols-none'>
                 <p className='light-font mt-3'>Joobify Corp</p>
-                <p className='light-font mt-1'>Jl Pattimura No. 1923</p>
+                <p className='light-font mt-1'>Jl Pattimura No. 25</p>
                 <p className='light-font mt-1'>Batu Meja</p>
                 <p className='light-font mt-1'>Kecamatan Sirimau</p>
                 <p className='light-font mt-1'>Ambon, Maluku 97129</p>
