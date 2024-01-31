@@ -14,7 +14,7 @@
     "url": "https://github.com/BillyFrcs/Joobify"
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "author": "Billy Franscois",
   "license": "MIT",
@@ -25,6 +25,7 @@
     "firebase-admin": "^12.0.0",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
+    "framer-motion": "^11.0.3",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
