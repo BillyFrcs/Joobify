@@ -5,7 +5,7 @@ import { FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const TeamPage = () => {
     return (
-        <main className='w-full h-80 bg-[#5B71C8] border border-gray-400'>
+        <main className='w-full h-80 bg-[#5B71C8]'>
             <div className='flex flex-col md:order-2 ml-9 pl-5 pt-10 h-screen'>
                 <div className='mt-[3rem]'>
                     <h1 className="font-bold mt-1 text-white text-4xl">Meet our</h1>
