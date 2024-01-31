@@ -17,8 +17,9 @@ import '../../styles/globals.css';
 
 const Navigation = () => {
   const [user, setUser] = useState(null);
+  const [active, setActive] = useState(null);
+  
   const auth = getAuth(firebaseApp);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -35,6 +36,10 @@ const Navigation = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleSetActive = (navItem) => {
+    setActive(navItem);
+  };
+
   const signOutUser = async () => {
     try {
       await signOut(auth);
@@ -46,7 +51,7 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar fluid rounded className='main-navbar'>
+    <Navbar fluid rounded className='main-navbar overflow-auto fixed mx-auto top-0 left-0 w-full z-50'>
       <NavbarBrand href="/">
         <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
 
@@ -100,10 +105,10 @@ const Navigation = () => {
       </div>
 
       <NavbarCollapse className='justify-center'>
-        <NavbarLink className="main-text mr-5" href="#home">Home</NavbarLink>
-        <NavbarLink className="main-text mr-5" href="#jobs">Jobs</NavbarLink>
-        <NavbarLink className="main-text mr-5" href="#about">About</NavbarLink>
-        <NavbarLink className="main-text mr-5" href="#contact">Contact</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('home')} className={`${active === 'home' ? 'main-color' : ''} main-text mr-5`} href="#home">Home</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('jobs')} className={`${active === 'jobs' ? 'main-color' : ''} main-text mr-5`} href="#jobs">Jobs</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('about')} className={`${active === 'about' ? 'main-color' : ''} main-text mr-5`} href="#about">About</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('contact')} className={`${active === 'contact' ? 'main-color' : ''} main-text mr-5}`} href="#contact">Contact</NavbarLink>
       </NavbarCollapse>
     </Navbar>
   );
@@ -111,7 +116,7 @@ const Navigation = () => {
 
 const SimpleNavigation = () => {
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded className='fixed w-full'>
       <NavbarBrand href="/">
         <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
       </NavbarBrand>

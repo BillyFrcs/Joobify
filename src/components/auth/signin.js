@@ -77,7 +77,7 @@ const SignInForm = () => {
     };
 
     return (
-        <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10'>
+        <main className='flex flex-col md:order-2 ml-9 pl-5 pt-20'>
             <h1 className="font-bold black-color text-4xl">WELCOME</h1>
             <h1 className="font-bold black-color text-4xl">TO <span className="main-color">JOOBIFY</span></h1>
 

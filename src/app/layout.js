@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   const isDevelopment = process.env.NODE_ENV === 'development';
 
   return (
-    <html lang="en" suppressHydrationWarning={isDevelopment}>
+    <html lang="en" suppressHydrationWarning={isDevelopment} className='scroll-smooth focus:scroll-auto'>
       <head>
         <link rel="icon" href="/images/JoobifyFavicon.svg" />
 
