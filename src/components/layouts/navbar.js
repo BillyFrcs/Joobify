@@ -18,7 +18,7 @@ import '../../styles/globals.css';
 const Navigation = () => {
   const [user, setUser] = useState(null);
   const [active, setActive] = useState(null);
-  
+
   const auth = getAuth(firebaseApp);
   const router = useRouter();
 
@@ -54,23 +54,21 @@ const Navigation = () => {
     <Navbar fluid rounded className='main-navbar overflow-auto fixed mx-auto top-0 left-0 w-full z-50'>
       <NavbarBrand href="/">
         <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
-
-        {/* <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span> */}
-
       </NavbarBrand>
 
-      <div className="flex md:order-2">
+      <div className="flex flex-col md:order-2">
         {
           user ? (
             <div className='flex'>
               <Dropdown
+                className=''
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar className="mr-5" img={user.photoURL} alt={user.displayName} rounded />
+                  <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
                 }
               >
-                <DropdownHeader>
+                <DropdownHeader >
                   <span className="block text-sm">{user.displayName}</span>
                   <span className="block truncate text-sm font-medium">{user.email}</span>
                 </DropdownHeader>

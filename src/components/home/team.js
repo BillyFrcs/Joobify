@@ -30,16 +30,16 @@ const TeamPage = () => {
                                             <p className="text-white text-1xl text-center">Back-End Developer</p>
 
                                             <div className="w-full flex justify-center mt-2">
-                                                <a href="https://www.instagram.com/billyfrcs" target="_blank" className="mx-3">
-                                                    <div aria-label="Github" role="img">
+                                                <Link href="https://www.instagram.com/billyfrcs" target="_blank" className="mx-3">
+                                                    <div aria-label="Instagram" role="img">
                                                         <FaInstagram className='text-white' />
                                                     </div>
-                                                </a>
-                                                <a href="https://www.linkedin.com/in/billyfrcs" target="_blank" className="mx-3">
-                                                    <div aria-label="Instagram" role="img">
+                                                </Link>
+                                                <Link href="https://www.linkedin.com/in/billyfrcs" target="_blank" className="mx-3">
+                                                    <div aria-label="Linkedin" role="img">
                                                         <FaLinkedin className='text-white' />
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -57,16 +57,16 @@ const TeamPage = () => {
                                             <p className="text-white text-1xl text-center">Front-End Developer</p>
 
                                             <div className="w-full flex justify-center mt-2">
-                                                <a href="" target="_blank" className="mx-3">
-                                                    <div aria-label="Github" role="img">
+                                                <Link href="https://www.instagram.com/jerryhuwae" target="_blank" className="mx-3">
+                                                    <div aria-label="Instagram" role="img">
                                                         <FaInstagram className='text-white' />
                                                     </div>
-                                                </a>
-                                                <a href="" target="_blank" className="mx-3">
-                                                    <div aria-label="Instagram" role="img">
+                                                </Link>
+                                                <Link href="https://www.linkedin.com/in/jerry-huwae-7702431b6" target="_blank" className="mx-3">
+                                                    <div aria-label="Linkedin" role="img">
                                                         <FaLinkedin className='text-white' />
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -85,14 +85,16 @@ const TeamPage = () => {
                                             <p className="text-white text-1xl text-center">UI/UX Designer</p>
 
                                             <div className="w-full flex justify-center mt-2">
-                                                <a href="" target="_blank" className="mx-3">
-                                                    <FaInstagram className='text-white' />
-                                                </a>
-                                                <a href="" target="_blank" className="mx-3">
-                                                    <div aria-label="Instagram" role="img">
+                                                <Link href="https://www.instagram.com/freedom_marsh" target="_blank" className="mx-3">
+                                                    <div aria-label="Linkedin" role="img">
+                                                        <FaInstagram className='text-white' />
+                                                    </div>
+                                                </Link>
+                                                <Link href="https://www.linkedin.com/in/freedom-george-nanuru-a44a01200/" target="_blank" className="mx-3">
+                                                    <div aria-label="Linkedin" role="img">
                                                         <FaLinkedin className='text-white' />
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

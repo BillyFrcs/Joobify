@@ -3,7 +3,7 @@ import React from 'react'
 import { Navigation } from '../components/layouts/navbar';
 
 import LandingPage from '@/components/home/landing';
-import JobsLists from '@/components/home/jobs';
+import JobsList from '@/components/home/jobs';
 import AboutPage from '@/components/home/about';
 import TeamPage from '@/components/home/team';
 import Footer from '@/components/home/footer';
@@ -20,7 +20,7 @@ function Home() {
       </div>
 
       <div>
-        <JobsLists />
+        <JobsList />
       </div>
 
       <div>

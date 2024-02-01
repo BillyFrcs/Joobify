@@ -34,6 +34,13 @@
   height: auto;
 }
 
+.company-profile-image {
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+  position: inherit;
+}
+
 .forgot-password-image {
   width: 500px;
   height: auto;
