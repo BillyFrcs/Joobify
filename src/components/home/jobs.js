@@ -24,7 +24,7 @@ const JobsList = () => {
     // console.log(jobs);
 
     if (!jobs)
-        return <p className='text-center mt-10 mb-10'>Saat ini belum ada lowongan pekerjaan</p>;
+        return <p className='text-center mt-10 mb-10'>Memuat daftar lowongan pekerjaan, mohon tunggu...</p>;
 
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10 h-auto' id='jobs'>
