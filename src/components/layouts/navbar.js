@@ -103,10 +103,10 @@ const Navigation = () => {
       </div>
 
       <NavbarCollapse className='justify-center'>
-        <NavbarLink onClick={() => handleSetActive('home')} className={`${active === 'home' ? 'main-color' : ''} main-text mr-5`} href="#home">Home</NavbarLink>
-        <NavbarLink onClick={() => handleSetActive('jobs')} className={`${active === 'jobs' ? 'main-color' : ''} main-text mr-5`} href="#jobs">Jobs</NavbarLink>
-        <NavbarLink onClick={() => handleSetActive('about')} className={`${active === 'about' ? 'main-color' : ''} main-text mr-5`} href="#about">About</NavbarLink>
-        <NavbarLink onClick={() => handleSetActive('contact')} className={`${active === 'contact' ? 'main-color' : ''} main-text mr-5}`} href="#contact">Contact</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('home')} className={`${active === 'home' ? 'main-color font-extrabold' : ''} main-text mr-5`} href="#home">Home</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('jobs')} className={`${active === 'jobs' ? 'main-color font-extrabold' : ''} main-text mr-5`} href="#jobs">Jobs</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('about')} className={`${active === 'about' ? 'main-color font-extrabold' : ''} main-text mr-5`} href="#about">About</NavbarLink>
+        <NavbarLink onClick={() => handleSetActive('contact')} className={`${active === 'contact' ? 'main-color font-extrabold' : ''} main-text mr-5}`} href="#contact">Contact</NavbarLink>
       </NavbarCollapse>
     </Navbar>
   );
