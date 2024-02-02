@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
-import { Button } from 'flowbite-react';
+import { Button, Card } from 'flowbite-react';
 import { FaBuilding } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
@@ -12,9 +12,6 @@ import axiosInstance from '@/utils/axios';
 
 const JobsList = () => {
     const [jobs, setJobs] = useState(null);
-
-    // const displayJobs = jobs[Math.floor(Math.random() * jobs.length)];
-
     useEffect(() => {
         axiosInstance.get('/jobs/allJobs').then((response) => {
             setJobs(response.data);
@@ -49,18 +46,16 @@ const JobsList = () => {
                         {/* <Button type='submit' className="joobify-black-color main-btn absolute end-2.5 bottom-1.5 focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Search</Button> */}
                     </div>
 
-                    <div className='mt-[5rem] mb-10 grid grid-cols-2 gap-4'>
+                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
                         {jobs.data.map((job, id) => (
-                            <Link key={id} href={{ pathname: `/jobs/${job.id}` }} className='box-border h-[10rem] w-[35rem] p-4 border-4 rounded-lg'>
-                                <Image className='mt-[0.4rem] company-profile-image rounded-lg shadow-md' src={job.companyProfileImage} alt='' width={0} height={0} />
+                            <Link key={id} href={{ pathname: `/jobs/${job.id}` }}>
+                                <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job.companyProfileImage} horizontal="true">
+                                    <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job.title}</h5>
 
-                                <div>
-                                    <h2 className="font-bold ml-[9rem] mt-[-7rem] main-color text-2xl w-auto h-auto">{job.title}</h2>
-
-                                    <h6 className="black-color ml-[9rem] mt-[1rem] text-1xl"><FaBuilding className='inline-block' />{job.companyName}<span className='ml-[1rem] text-md main-color font-bold'>{job.jobType}</span></h6>
-                                    <h6 className="black-color ml-[9rem] mt-[1rem] text-1xl"><FaLocationDot className='inline-block' />{job.location}</h6>
-                                    <h6 className="black-color ml-[21.7rem] mt-[-0.1rem] font-light text-[13px]">Dibuat pada {job.postedOn}</h6>
-                                </div>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job.companyName} <span className='text-md main-color font-bold'>{job.jobType}</span></p>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job.location}</p>
+                                    <p className="font-light text-gray-700 dark:text-gray-400 text-[15px] whitespace-normal">Dibuat pada {job.postedOn}</p>
+                                </Card>
                             </Link>
                         ))}
                     </div>
