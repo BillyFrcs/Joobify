@@ -10,4 +10,4 @@
 - Start the project: `npm run start`
 - EsLint: `npm run lint`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the live app.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the development server.
