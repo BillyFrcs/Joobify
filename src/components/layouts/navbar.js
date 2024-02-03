@@ -83,7 +83,7 @@ const Navigation = () => {
               </Dropdown>
             </div>
           ) : (
-            <div className='flex mr-3 gap-2'>
+            <div className='flex mr-5 gap-2'>
               <Link className="main-font" href="/signin">
                 <Button className="joobify-black-color main-btn">Sign in</Button>
               </Link>
