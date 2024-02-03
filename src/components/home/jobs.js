@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
@@ -12,16 +11,23 @@ import axiosInstance from '@/utils/axios';
 
 const JobsList = () => {
     const [jobs, setJobs] = useState(null);
+
     useEffect(() => {
         axiosInstance.get('/jobs/allJobs').then((response) => {
             setJobs(response.data);
         });
     }, []);
 
-    // console.log(jobs);
-
     if (!jobs)
         return <p className='text-center mt-10 mb-10'>Memuat daftar lowongan pekerjaan, mohon tunggu...</p>;
+
+    /*
+    jobs.data.map((job, id) => {
+        console.log(job.id);
+    });
+    */
+
+    // console.log(jobs.data);
 
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10 h-auto' id='jobs'>
