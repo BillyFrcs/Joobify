@@ -9,7 +9,9 @@ import ContactForm from './contact';
 const Footer = () => {
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-5 h-[25rem]' id='contact'>
-            <Image className="logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
+            <Link href='/'>
+                <Image className="logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
+            </Link>
 
             <div className='grid grid-cols-none'>
                 <p className='light-font mt-3'>Joobify Corp</p>
