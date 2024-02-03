@@ -83,18 +83,14 @@ const Navigation = () => {
               </Dropdown>
             </div>
           ) : (
-            <div className='flex'>
-              <div className="mr-3">
-                <Link className="main-font" href="/signin">
-                  <Button className="joobify-black-color main-btn">Sign in</Button>
-                </Link>
-              </div>
+            <div className='flex mr-3 gap-2'>
+              <Link className="main-font" href="/signin">
+                <Button className="joobify-black-color main-btn">Sign in</Button>
+              </Link>
 
-              <div className="mr-3">
-                <Link className="main-font" href="/signup">
-                  <Button className="joobify-main-color main-btn">Sign up</Button>
-                </Link>
-              </div>
+              <Link className="main-font" href="/signup">
+                <Button className="joobify-main-color main-btn">Sign up</Button>
+              </Link>
             </div>
           )
         }
