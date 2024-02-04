@@ -2,21 +2,56 @@
 
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Button, Card } from 'flowbite-react';
 import { FaBuilding } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
 import axiosInstance from '@/utils/axios';
+import { joobifyEndpoint } from '@/utils/api';
 
 const JobsList = () => {
-    const [jobs, setJobs] = useState(null);
+    // const [jobs, setJobs] = useState([]);
 
+    const [jobs, setJobs] = useState(null);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(8);
+
+    const router = useRouter();
+
+    /*
     useEffect(() => {
         axiosInstance.get('/jobs/allJobs').then((response) => {
             setJobs(response.data);
         });
     }, []);
+    */
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                axiosInstance.get(`/jobs/allJobs?page=${page}&limit=${limit}`).then((response) => {
+                    setJobs(response.data);
+                });
+
+                /*
+                const response = await fetch(`${joobifyEndpoint}/jobs/allJobs?page=${page}&limit=${limit}`);
+
+                const results = await response.json();
+
+                console.log(results.data);
+
+                setJobs(results.data);
+                */
+            } catch (error) {
+                console.log('Failed to fetch data: ' + error.message);
+            }
+        }
+
+        fetchData();
+
+    }, [page, limit]);
 
     if (!jobs)
         return <p className='text-center mt-10 mb-10'>Memuat daftar lowongan pekerjaan, mohon tunggu...</p>;
@@ -28,6 +63,24 @@ const JobsList = () => {
     */
 
     // console.log(jobs.data);
+
+    const handlePreviousPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+
+            router.push(`/?page=${page - 1}`);
+
+            // router.push(`/?page=${page - 1}&limit=${limit}`);
+        }
+    };
+
+    const handleNextPage = () => {
+        setPage(page + 1);
+
+        router.push(`/?page=${page + 1}`);
+
+        // router.push(`/?page=${page - 1}&limit=${limit}`);
+    };
 
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10 h-auto' id='jobs'>
@@ -64,6 +117,11 @@ const JobsList = () => {
                                 </Card>
                             </Link>
                         ))}
+                    </div>
+
+                    <div className='flex gap-4 mb-10 mt-10 justify-center items-center'>
+                        <Button onClick={handlePreviousPage} disabled={page === 1} type='button' className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color'>&#x3C;</Button>
+                        <Button onClick={handleNextPage} disabled={jobs.data.length < limit} type='button' className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color'>&#x3e;</Button>
                     </div>
                 </form>
             </div>
