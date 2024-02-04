@@ -16,7 +16,7 @@ const JobsList = () => {
 
     const [jobs, setJobs] = useState(null);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(8);
+    const [limit, setLimit] = useState(10);
 
     const router = useRouter();
 
