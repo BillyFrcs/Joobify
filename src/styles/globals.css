@@ -35,7 +35,7 @@
 }
 
 .company-profile-image {
-  width: 130px;
+  width: 200px;
   height: auto;
   object-fit: contain;
   position: inherit;
@@ -44,6 +44,11 @@
 .forgot-password-image {
   width: 500px;
   height: auto;
+}
+
+.rounded-job-detail {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .main-navbar {
