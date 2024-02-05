@@ -17,6 +17,7 @@ const JobsList = () => {
     const [jobs, setJobs] = useState(null);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
+    const [totalPages, setTotalPages] = useState(0);
 
     const router = useRouter();
 
@@ -33,6 +34,8 @@ const JobsList = () => {
             try {
                 axiosInstance.get(`/jobs/allJobs?page=${page}&limit=${limit}`).then((response) => {
                     setJobs(response.data);
+
+                    setTotalPages(response.data.totalItem);
                 });
 
                 /*
@@ -82,6 +85,97 @@ const JobsList = () => {
         // router.push(`/?page=${page - 1}&limit=${limit}`);
     };
 
+    const handlePageChange = (pageNumber) => {
+        setPage(pageNumber);
+
+        router.push(`/?page=${pageNumber}`);
+    };
+
+    const renderPagination = () => {
+        const MAX_PAGES = 5; // Maximum number of page buttons to display
+        const pages = [];
+
+        let startPage = Math.max(1, page - Math.floor(MAX_PAGES / 2));
+        let endPage = Math.min(totalPages, startPage + MAX_PAGES - 1);
+
+        if (totalPages > MAX_PAGES) {
+            if (endPage === totalPages) {
+                startPage = totalPages - MAX_PAGES + 1;
+            } else if (startPage === 1) {
+                endPage = MAX_PAGES;
+            }
+        }
+
+        const TRIPLE_DOT = '...'
+
+        if (startPage > 1) {
+            pages.push(
+                <Button key="first" className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color' type='button' onClick={() => handlePageChange(1)}>
+                    1
+                </Button>
+            );
+            if (startPage > 2) {
+                pages.push(
+                    <span key="ellipsis-first">{TRIPLE_DOT}</span>
+                );
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(
+                <Button className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color' type='button' key={i} onClick={() => handlePageChange(i)} disabled={i === page}>
+                    {i}
+                </Button>
+            );
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                pages.push(
+                    <span key="ellipsis-last">{TRIPLE_DOT}</span>
+                );
+            }
+
+            pages.push(
+                <Button key="last" className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color' type='button' onClick={() => handlePageChange(totalPages)}>
+                    {totalPages}
+                </Button>
+            );
+        }
+
+        /*
+        if (startPage > 1) {
+            pages.unshift(
+                <button key="prev" onClick={() => handlePageChange(startPage - 1)}>
+                    {TRIPLE_DOT}
+                </button>
+            );
+        }
+
+        if (endPage < totalPages) {
+            pages.push(
+                <button key="next" onClick={() => handlePageChange(endPage + 1)}>
+                    {TRIPLE_DOT}
+                </button>
+            );
+        }
+        */
+
+        /*
+        const pages = [];
+
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(
+                <Button className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color' type='button' key={i} onClick={() => handlePageChange(i)} disabled={i === page}>
+                    {i}
+                </Button>
+            );
+        }
+        */
+
+        return pages;
+    };
+
     return (
         <main className='flex flex-col md:order-2 ml-9 pl-5 pt-10 h-auto' id='jobs'>
             <div className='flex flex-col items-center justify-center'>
@@ -121,6 +215,7 @@ const JobsList = () => {
 
                     <div className='flex gap-4 mb-10 mt-10 justify-center items-center'>
                         <Button onClick={handlePreviousPage} disabled={page === 1} type='button' className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color'>&#x3C;</Button>
+                        {renderPagination()}
                         <Button onClick={handleNextPage} disabled={jobs.data.length < limit} type='button' className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color'>&#x3e;</Button>
                     </div>
                 </form>
