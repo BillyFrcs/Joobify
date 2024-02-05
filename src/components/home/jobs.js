@@ -9,7 +9,10 @@ import { FaBuilding } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
 import axiosInstance from '@/utils/axios';
+
 import { joobifyEndpoint } from '@/utils/api';
+
+import JobSearching from './searching';
 
 const JobsList = () => {
     // const [jobs, setJobs] = useState([]);
@@ -18,6 +21,12 @@ const JobsList = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
+
+    const [query, setQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [error, setError] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     const router = useRouter();
 
@@ -36,6 +45,8 @@ const JobsList = () => {
                     setJobs(response.data);
 
                     setTotalPages(response.data.totalItem);
+
+                    // console.log(response.data);
                 });
 
                 /*
@@ -55,6 +66,56 @@ const JobsList = () => {
         fetchData();
 
     }, [page, limit]);
+
+    const handleSearch = async () => {
+        try {
+            if (!query.trim()) {
+                setIsVisible(true);
+
+                // Set the timeout
+                setTimeout(() => {
+                    setIsVisible(false);
+                }, 5000);
+
+                setError('Mohon input pekerjaan yang ingin dicari!');
+
+                return;
+            }
+
+            axiosInstance.get(`/jobs/search?job=${query}`).then((response) => {
+                if (response.data.data.length != 0) {
+                    setSearchResults(response.data); // Adjust this based on your API response structure
+                    setIsSearching(true);
+
+                    router.push(`/?search?job=${query}`);
+
+                    // console.log(response.data);
+                } else {
+                    // console.log(response.data.message);
+
+                    setSearchResults([]);
+                }
+            }).catch((error) => {
+                if (error.response && error.response.status === 404) {
+                    // console.log(error.response.data.message);
+                }
+
+                setError(true);
+
+                // console.error('Error fetching data: ', error.message);
+            });
+
+            /*
+            const response = await fetch(`${joobifyEndpoint}/jobs/search?job=${query}`);
+            const results = await response.json();
+
+            setSearchResults(results.data); // Adjust this based on your API response structure
+            setIsSearching(true);
+            */
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
 
     if (!jobs)
         return <p className='text-center mt-10 mb-10'>Memuat daftar lowongan pekerjaan, mohon tunggu...</p>;
@@ -114,6 +175,7 @@ const JobsList = () => {
                     1
                 </Button>
             );
+
             if (startPage > 2) {
                 pages.push(
                     <span key="ellipsis-first">{TRIPLE_DOT}</span>
@@ -142,6 +204,8 @@ const JobsList = () => {
                 </Button>
             );
         }
+
+        return pages;
 
         /*
         if (startPage > 1) {
@@ -172,8 +236,6 @@ const JobsList = () => {
             );
         }
         */
-
-        return pages;
     };
 
     return (
@@ -184,7 +246,7 @@ const JobsList = () => {
                     <h2 className="font-bold mt-1 black-color text-2xl">CARI PEKERJAAN YANG TERSEDIA</h2>
                 </div>
 
-                <form method='' className='mt-5'>
+                <div className='mt-5'>
                     <div className="flex items-center justify-center">
                         {/* <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -192,25 +254,31 @@ const JobsList = () => {
                             </svg>
                         </div> */}
 
-                        <input type="search" id="job-search" className="w-auto search-input block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pekerjaan apa yang ingin anda cari ?" required />
+                        <input type="text" id="job-search" onChange={(event) => setQuery(event.target.value)} value={query} className="w-auto search-input block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pekerjaan apa yang ingin anda cari ?" required />
 
-                        <Button type='submit' className="joobify-black-color main-btn h-auto w-[8rem] ml-[-8.5rem] bottom-[0rem] focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Cari</Button>
+                        <Button type='button' onClick={handleSearch} className="joobify-black-color main-btn h-auto w-[8rem] ml-[-8.5rem] bottom-[0rem] focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Cari</Button>
 
                         {/* <Button type='submit' className="joobify-black-color main-btn absolute end-2.5 bottom-1.5 focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Search</Button> */}
                     </div>
 
-                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
-                        {jobs.data.map((job, id) => (
-                            <Link key={id} href={{ pathname: `/jobs/${job.id}` }}>
-                                <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job.companyProfileImage} horizontal="true">
-                                    <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job.title}</h5>
+                    {isVisible && <span className='text-sm text-red-500 mt-2 flex justify-center items-center'>{error}</span>}
 
-                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job.companyName} <span className='text-md main-color font-bold'>({job.jobType})</span></p>
-                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job.location}</p>
-                                    <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job.postedOn}</p>
-                                </Card>
-                            </Link>
-                        ))}
+                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
+                        {!isSearching ? (
+                            jobs.data.map((job, id) => (
+                                <Link key={id} href={{ pathname: `/jobs/${job.id}` }}>
+                                    <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job.companyProfileImage} horizontal="true">
+                                        <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job.title}</h5>
+
+                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job.companyName} <span className='text-md main-color font-bold'>({job.jobType})</span></p>
+                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job.location}</p>
+                                        <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job.postedOn}</p>
+                                    </Card>
+                                </Link>
+                            ))
+                        ) : (
+                            <JobSearching query={query} searchResults={searchResults} />
+                        )}
                     </div>
 
                     <div className='flex gap-4 mb-10 mt-10 justify-center items-center'>
@@ -218,7 +286,7 @@ const JobsList = () => {
                         {renderPagination()}
                         <Button onClick={handleNextPage} disabled={jobs.data.length < limit} type='button' className='flex font-extrabold btn-style min-w-max h-auto shadow-md light-font joobify-main-color'>&#x3e;</Button>
                     </div>
-                </form>
+                </div>
             </div>
         </main >
     );
