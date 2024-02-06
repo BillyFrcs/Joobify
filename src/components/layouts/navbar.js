@@ -84,13 +84,9 @@ const Navigation = () => {
             </div>
           ) : (
             <div className='flex mr-5 gap-2'>
-              <Link className="main-font" href="/signin">
-                <Button className="joobify-black-color main-btn">Sign in</Button>
-              </Link>
+              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
 
-              <Link className="main-font" href="/signup">
-                <Button className="joobify-main-color main-btn">Sign up</Button>
-              </Link>
+              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
             </div>
           )
         }

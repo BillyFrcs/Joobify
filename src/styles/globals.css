@@ -103,6 +103,10 @@
   right: 11rem;
 }
 
+.dashboard-container {
+  background-image: url('/images/background/Memphisbackground.svg');
+}
+
 .landing-image-container {
   right: 5rem;
   top: -5rem;

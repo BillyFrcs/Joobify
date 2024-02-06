@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const AboutPage = () => {
     return (
-        <div className='bg-[#373737] w-full'>
+        <div className='bg-[#373737] w-full h-auto'>
             <main className='flex flex-col md:order-2 ml-9 pl-5 pt-20' id='about'>
                 <div className='mt-20'>
                     <div>
