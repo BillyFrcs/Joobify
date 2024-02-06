@@ -12,7 +12,7 @@ function Home() {
   return (
     <div>
       <header>
-        <Navigation />
+        <Navigation linkName="/dashboard" navName="Dashboard" />
       </header>
 
       <div>

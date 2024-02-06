@@ -38,7 +38,7 @@ const PostJob = () => {
     return (
         <div>
             <div>
-                <MinimalNavigation linkName="" navName="Post Job" />
+                <MinimalNavigation linkName="/dashboard" navName="Dashboard" />
 
                 <div className='bg-[#263238] dashboard-container w-full h-auto'>
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>

@@ -51,7 +51,7 @@ const JobDetail = ({ params }) => {
 
     return (
         <div>
-            <MinimalNavigation linkName="" navName="Job Detail" />
+            <MinimalNavigation linkName="/dashboard" navName="Dashboard" />
 
             <main className='container flex flex-col md:order-2 ml-9 pl-5 pt-20'>
                 <div className='bg-[#5B71C8] justify-start min-w-max rounded-job-detail rounded-sm h-[5rem] flex'>

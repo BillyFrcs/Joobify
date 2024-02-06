@@ -69,7 +69,7 @@ const Dashboard = () => {
                 <div className='bg-[#263238] dashboard-container w-full h-auto'>
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>
                         <div className='mt-20 mb-20'>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : 'Guest'}.</span></h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : ''}.</span></h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Selamat Datang</h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Di Dashboard</h1>
 
@@ -83,70 +83,68 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <main className='flex flex-col md:order-2 ml-auto pl-auto pt-auto h-auto'>
+            <main className='flex flex-col md:order-2 justify-center items-center pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-center'>
-                    <div className='mt-0'>
-                        <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
-                            <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                                <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
+                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
+                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
 
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
 
-                                <div className='flex justify-start gap-4'>
-                                    <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                    <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                                </div>
+                            <div className='flex justify-start gap-4'>
+                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                            </div>
 
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                            </Card>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
+                        </Card>
 
-                            <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                                <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
+                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
 
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
 
-                                <div className='flex justify-start gap-4'>
-                                    <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                    <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                                </div>
+                            <div className='flex justify-start gap-4'>
+                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                            </div>
 
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                            </Card>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
+                        </Card>
 
-                            <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                                <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
+                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
 
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
 
-                                <div className='flex justify-start gap-4'>
-                                    <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                    <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                                </div>
+                            <div className='flex justify-start gap-4'>
+                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                            </div>
 
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                            </Card>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
+                        </Card>
 
-                            <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                                <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
+                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
 
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
+                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
 
-                                <div className='flex justify-start gap-4'>
-                                    <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                    <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                                </div>
+                            <div className='flex justify-start gap-4'>
+                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                            </div>
 
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                                <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                            </Card>
-                        </div>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
+                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
+                        </Card>
                     </div>
                 </div>
             </main>

@@ -38,12 +38,12 @@ const JobPosedDetail = () => {
     return (
         <div>
             <div>
-                <MinimalNavigation linkName="" navName="Post Job" />
+                <MinimalNavigation linkName="/dashboard" navName="Dashboard" />
 
                 <div className='bg-[#263238] dashboard-container w-full h-auto'>
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>
                         <div className='mt-20 mb-20'>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : 'Guest'}.</span></h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : ''}.</span></h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Silahkan update lowongan pekerjaan</h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Jika ada yang ingin diubah</h1>
                         </div>

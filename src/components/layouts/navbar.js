@@ -15,7 +15,7 @@ import firebaseApp from '@/config/firebaseApp';
 
 import '../../styles/globals.css';
 
-const Navigation = () => {
+const Navigation = ({ linkName, navName }) => {
   const [user, setUser] = useState(null);
   const [active, setActive] = useState(null);
 
@@ -60,6 +60,15 @@ const Navigation = () => {
         {
           user ? (
             <div className='flex'>
+              <NavbarCollapse className='justify-end items-end ml-auto'>
+                <NavbarLink className='main-color font-extrabold main-text mr-5 mt-3' href={linkName}>{navName}</NavbarLink>
+              </NavbarCollapse>
+
+              <Link href="/profile">
+                <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
+              </Link>
+
+              {/* 
               <Dropdown
                 className=''
                 arrowIcon={false}
@@ -79,8 +88,9 @@ const Navigation = () => {
                   <Link href="/dashboard">Dashboard</Link>
                 </DropdownItem>
                 <DropdownDivider />
+
                 <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           ) : (
             <div className='flex mr-5 gap-2'>
@@ -100,16 +110,6 @@ const Navigation = () => {
         <NavbarLink onClick={() => handleSetActive('about')} className={`${active === 'about' ? 'main-color font-extrabold' : ''} main-text mr-5`} href="#about">About</NavbarLink>
         <NavbarLink onClick={() => handleSetActive('contact')} className={`${active === 'contact' ? 'main-color font-extrabold' : ''} main-text mr-5}`} href="#contact">Contact</NavbarLink>
       </NavbarCollapse>
-    </Navbar>
-  );
-};
-
-const SimpleNavigation = () => {
-  return (
-    <Navbar fluid rounded className='fixed w-full'>
-      <NavbarBrand href="/">
-        <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
-      </NavbarBrand>
     </Navbar>
   );
 };
@@ -159,7 +159,15 @@ const MinimalNavigation = ({ linkName, navName }) => {
         {
           user ? (
             <div className='flex'>
-              <Dropdown
+              <NavbarCollapse className='justify-end items-end ml-auto'>
+                <NavbarLink className='main-color font-extrabold main-text mr-5 mt-3' href={linkName}>{navName}</NavbarLink>
+              </NavbarCollapse>
+
+              <Link href="/profile">
+                <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
+              </Link>
+
+              {/* <Dropdown
                 className=''
                 arrowIcon={false}
                 inline
@@ -178,30 +186,33 @@ const MinimalNavigation = ({ linkName, navName }) => {
                   <Link href="/dashboard">Dashboard</Link>
                 </DropdownItem>
                 <DropdownDivider />
+
                 <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           ) : (
             <div className='flex mr-5 gap-2'>
-              <Link className="main-font" href="/signin">
-                <Button className="joobify-black-color main-btn">Sign in</Button>
-              </Link>
+              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
 
-              <Link className="main-font" href="/signup">
-                <Button className="joobify-main-color main-btn">Sign up</Button>
-              </Link>
+              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
             </div>
           )
         }
 
         <NavbarToggle />
       </div>
-
-      <NavbarCollapse className='justify-end items-end ml-auto'>
-        <NavbarLink className='main-color font-extrabold main-text mr-5' href={linkName}>{navName}</NavbarLink>
-      </NavbarCollapse>
     </Navbar>
   );
 };
 
-export { Navigation, SimpleNavigation, MinimalNavigation };
+const SimpleNavigation = () => {
+  return (
+    <Navbar fluid rounded className='fixed w-full'>
+      <NavbarBrand href="/">
+        <Image className="mr-3 ml-0 h-6 sm:h-10 logo" src="/images/JoobifyLogo.svg" width={0} height={0} priority={true} alt="Joobify Logo" />
+      </NavbarBrand>
+    </Navbar>
+  );
+};
+
+export { Navigation, MinimalNavigation, SimpleNavigation };
