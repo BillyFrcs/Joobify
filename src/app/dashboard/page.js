@@ -94,7 +94,7 @@ const Dashboard = () => {
 
                             <div className='flex justify-start gap-4'>
                                 <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
                             </div>
 
                             <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
@@ -109,7 +109,7 @@ const Dashboard = () => {
 
                             <div className='flex justify-start gap-4'>
                                 <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
                             </div>
 
                             <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
@@ -124,7 +124,7 @@ const Dashboard = () => {
 
                             <div className='flex justify-start gap-4'>
                                 <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
                             </div>
 
                             <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
@@ -139,7 +139,7 @@ const Dashboard = () => {
 
                             <div className='flex justify-start gap-4'>
                                 <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
+                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
                             </div>
 
                             <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
