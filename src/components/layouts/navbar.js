@@ -118,7 +118,7 @@ const SimpleNavigation = () => {
   );
 };
 
-const MinimalNavigation = ({ linkName }) => {
+const MinimalNavigation = ({ linkName, navName }) => {
   const [user, setUser] = useState(null);
   const [active, setActive] = useState(null);
 
@@ -202,7 +202,7 @@ const MinimalNavigation = ({ linkName }) => {
       </div>
 
       <NavbarCollapse className='justify-end items-end ml-auto'>
-        <NavbarLink className='main-color font-extrabold main-text mr-5' href="/">{linkName}</NavbarLink>
+        <NavbarLink className='main-color font-extrabold main-text mr-5' href={linkName}>{navName}</NavbarLink>
       </NavbarCollapse>
     </Navbar>
   );
