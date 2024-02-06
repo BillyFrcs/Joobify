@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Footer from '@/components/home/footer';
 import axiosInstance from '@/utils/axios';
 
-import { Navigation } from '@/components/layouts/navbar';
+import { MinimalNavigation } from '@/components/layouts/navbar';
 
 const getData = async ({ id }) => {
     const response = await axiosInstance.get(`/jobs/jobDetail/${id}`);
@@ -51,7 +51,7 @@ const JobDetail = ({ params }) => {
 
     return (
         <div>
-            <Navigation />
+            <MinimalNavigation linkName="Job Detail" />
 
             <main className='container flex flex-col md:order-2 ml-9 pl-5 pt-20'>
                 <div className='bg-[#5B71C8] justify-start min-w-max rounded-job-detail rounded-sm h-[5rem] flex'>
