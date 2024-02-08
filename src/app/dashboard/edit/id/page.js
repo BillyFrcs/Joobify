@@ -117,8 +117,8 @@ const JobPosedDetail = () => {
                                         <Label htmlFor="job-type" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Tipe Pekerjaan" />
                                     </div>
                                     <Select className='' id="job-type" name="job-type" required>
-                                        <option>Full-time</option>
-                                        <option>Part-time</option>
+                                        <option>Full-Time</option>
+                                        <option>Part-Time</option>
                                         <option>Contract</option>
                                         <option>Temporary</option>
                                         <option>Internship</option>
