@@ -116,7 +116,7 @@ const Profile = () => {
                                         </Label>
                                     </div>
 
-                                    <div className="max-w-md justify-end items-end ml-10 mb-[20.5rem]">
+                                    <div className="max-w-md justify-end items-end ml-10 mb-[19.3rem]">
                                         <div className="mb-2">
                                             <Label htmlFor="user-phone-number" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Nomor Telepon</Label>
                                             <input type="number" id="user-phone-number" name="user-phone-number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nomor telepon" required={true} />
@@ -129,7 +129,7 @@ const Profile = () => {
                                             <Textarea id="user-about" name="user-about" placeholder="About you" required rows={10} cols={50} />
                                         </div>
 
-                                        <div className='flex mt-5 gap-4'>
+                                        <div className='flex mt-10 gap-4'>
                                             <Button type='submit' className='btn-style main-font light-font joobify-main-color'>Update</Button>
 
                                             <Link href="/profile" className='btn-style w-auto h-auto light-font px-4 py-2 bg-[red] hover:bg-[#373737] rounded-lg text-white hover:text-white shadow-md'>Cancel</Link>
