@@ -24,6 +24,11 @@
   height: auto;
 }
 
+.user-profile-image {
+  width: 150px;
+  height: auto;
+}
+
 .team-container {
   margin-top: -13rem;
   margin-left: 20rem;
@@ -101,6 +106,11 @@
 
 .image-container {
   right: 11rem;
+}
+
+.profile-container {
+  background-image: url('/images/background/geometrics.svg');
+  opacity: 0.4;
 }
 
 .dashboard-container {
