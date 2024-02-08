@@ -2,7 +2,6 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
     baseURL: process.env.JOOBIFY_ENDPOINT,
-    timeout: 10000,
     headers: {
         "Content-Type": "application/json",
     }
