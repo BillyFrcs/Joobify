@@ -14,7 +14,7 @@
     "url": "https://github.com/BillyFrcs/Joobify"
   },
   "engines": {
-    "node": "20"
+    "node": "18"
   },
   "author": "Billy Franscois",
   "license": "MIT",
