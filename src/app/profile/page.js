@@ -51,7 +51,7 @@ const Profile = () => {
                 <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-10' id='about'>
                     <div className='mt-10 flex flex-col justify-center items-center'>
                         <div className='flex mb-5 flex-col justify-center items-center'>
-                            <Image className="rounded-full z-0 shadow-lg border-2 border-[#5B71C8] user-profile-image" alt="" src="/images/team/Billy.svg" height={0} width={0} />
+                            <Image className="rounded-full z-0 shadow-lg border-4 border-[#5B71C8] user-profile-image" alt="" src={user?.photoURL} height={0} width={0} />
                         </div>
 
                         <h1 className="font-bold mt-1 text-white text-4xl">
