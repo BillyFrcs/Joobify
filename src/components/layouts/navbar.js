@@ -18,6 +18,7 @@ import '../../styles/globals.css';
 const Navigation = ({ linkName, navName }) => {
   const [user, setUser] = useState(null);
   const [active, setActive] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const auth = getAuth(firebaseApp);
   const router = useRouter();
@@ -35,6 +36,16 @@ const Navigation = ({ linkName, navName }) => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      setLoading(false);
+    };
+
+    checkAuthentication();
+  }, [user]);
 
   const handleSetActive = (navItem) => {
     setActive(navItem);
@@ -58,7 +69,13 @@ const Navigation = ({ linkName, navName }) => {
 
       <div className="flex flex-col md:order-2">
         {
-          user ? (
+          loading ? null : !user ? (
+            <div className='flex mr-5 gap-2'>
+              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
+
+              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
+            </div>
+          ) : (
             <div className='flex'>
               <NavbarCollapse className='justify-end items-end ml-auto'>
                 <NavbarLink className='main-color font-extrabold main-text mr-5 mt-3' href={linkName}>{navName}</NavbarLink>
@@ -69,34 +86,28 @@ const Navigation = ({ linkName, navName }) => {
               </Link>
 
               {/* 
-              <Dropdown
-                className=''
-                arrowIcon={false}
-                inline
-                label={
-                  <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
-                }
-              >
-                <DropdownHeader >
-                  <span className="block text-sm">{user.displayName}</span>
-                  <span className="block truncate text-sm font-medium">{user.email}</span>
-                </DropdownHeader>
-                <DropdownItem>
-                  <Link href="/profile">Profile</Link>
-                </DropdownItem>
-                <DropdownItem>
-                  <Link href="/dashboard">Dashboard</Link>
-                </DropdownItem>
-                <DropdownDivider />
+            <Dropdown
+            className=''
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
+            }
+          >
+            <DropdownHeader >
+              <span className="block text-sm">{user.displayName}</span>
+              <span className="block truncate text-sm font-medium">{user.email}</span>
+            </DropdownHeader>
+            <DropdownItem>
+              <Link href="/profile">Profile</Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link href="/dashboard">Dashboard</Link>
+            </DropdownItem>
+            <DropdownDivider />
 
-                <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
-              </Dropdown> */}
-            </div>
-          ) : (
-            <div className='flex mr-5 gap-2'>
-              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
-
-              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
+            <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
+          </Dropdown> */}
             </div>
           )
         }
@@ -117,6 +128,7 @@ const Navigation = ({ linkName, navName }) => {
 const MinimalNavigation = ({ linkName, navName }) => {
   const [user, setUser] = useState(null);
   const [active, setActive] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const auth = getAuth(firebaseApp);
   const router = useRouter();
@@ -134,6 +146,16 @@ const MinimalNavigation = ({ linkName, navName }) => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      setLoading(false);
+    };
+
+    checkAuthentication();
+  }, [user]);
 
   const handleSetActive = (navItem) => {
     setActive(navItem);
@@ -157,7 +179,13 @@ const MinimalNavigation = ({ linkName, navName }) => {
 
       <div className="flex flex-col md:order-2">
         {
-          user ? (
+          loading ? null : !user ? (
+            <div className='flex mr-5 gap-2'>
+              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
+
+              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
+            </div>
+          ) : (
             <div className='flex'>
               <NavbarCollapse className='justify-end items-end ml-auto'>
                 <NavbarLink className='main-color font-extrabold main-text mr-5 mt-3' href={linkName}>{navName}</NavbarLink>
@@ -168,33 +196,27 @@ const MinimalNavigation = ({ linkName, navName }) => {
               </Link>
 
               {/* <Dropdown
-                className=''
-                arrowIcon={false}
-                inline
-                label={
-                  <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
-                }
-              >
-                <DropdownHeader >
-                  <span className="block text-sm">{user.displayName}</span>
-                  <span className="block truncate text-sm font-medium">{user.email}</span>
-                </DropdownHeader>
-                <DropdownItem>
-                  <Link href="/profile">Profile</Link>
-                </DropdownItem>
-                <DropdownItem>
-                  <Link href="/dashboard">Dashboard</Link>
-                </DropdownItem>
-                <DropdownDivider />
+              className=''
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
+              }
+            >
+              <DropdownHeader >
+                <span className="block text-sm">{user.displayName}</span>
+                <span className="block truncate text-sm font-medium">{user.email}</span>
+              </DropdownHeader>
+              <DropdownItem>
+                <Link href="/profile">Profile</Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link href="/dashboard">Dashboard</Link>
+              </DropdownItem>
+              <DropdownDivider />
 
-                <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
-              </Dropdown> */}
-            </div>
-          ) : (
-            <div className='flex mr-5 gap-2'>
-              <Link href="/signin" className="main-font joobify-black-color px-4 py-2 shadow-md rounded-lg text-white">Sign in</Link>
-
-              <Link href="/signup" className="main-font joobify-main-color px-4 py-2 shadow-md rounded-lg text-white">Sign up</Link>
+              <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
+            </Dropdown> */}
             </div>
           )
         }
