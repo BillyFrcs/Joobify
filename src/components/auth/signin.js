@@ -6,8 +6,10 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from 'flowbite-react';
+import { getAuth } from 'firebase/auth';
 
 import GoogleAuth from './googleAuth';
+import firebaseApp from '@/config/firebaseApp';
 
 import { joobifyEndpoint } from '@/utils/api';
 
@@ -20,10 +22,17 @@ const SignInForm = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [token, setToken] = useState(null);
 
+    const auth = getAuth(firebaseApp);
+
     useEffect(() => {
+        // Check if the user is authenticated
+        if (auth) {
+            router.push('/profile');
+        }
+
         setEmail('');
         setPassword('');
-    }, []);
+    }, [auth, router]);
 
     // Form data
     const [formData, setFormData] = useState({
