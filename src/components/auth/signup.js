@@ -22,18 +22,11 @@ const SignUpForm = () => {
     const [error, setError] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
-    const auth = getAuth(firebaseApp);
-
     useEffect(() => {
-        // Check if the user is authenticated
-        if (auth) {
-            router.push('/profile');
-        }
-
         setName('');
         setEmail('');
         setPassword('');
-    }, [auth, router]);
+    }, []);
 
     // Form data
     const [formData, setFormData] = useState({

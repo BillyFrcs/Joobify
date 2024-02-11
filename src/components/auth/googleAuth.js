@@ -38,9 +38,9 @@ const GoogleAuth = () => {
                 const email = result.user.email;
                 const photoURL = result.user.photoURL;
 
-                localStorage.setItem('name', name);
-                localStorage.setItem('email', email);
-                localStorage.setItem('photoURL', photoURL);
+                // localStorage.setItem('name', name);
+                // localStorage.setItem('email', email);
+                // localStorage.setItem('photoURL', photoURL);
 
                 router.push('/');
             })

@@ -22,17 +22,10 @@ const SignInForm = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [token, setToken] = useState(null);
 
-    const auth = getAuth(firebaseApp);
-
     useEffect(() => {
-        // Check if the user is authenticated
-        if (auth) {
-            router.push('/profile');
-        }
-
         setEmail('');
         setPassword('');
-    }, [auth, router]);
+    },[]);
 
     // Form data
     const [formData, setFormData] = useState({
@@ -63,11 +56,11 @@ const SignInForm = () => {
             const result = await response.json();
 
             if (response.ok) {
-                // console.log(result.data.user.stsTokenManager.accessToken);
+                console.log(result.data.user.stsTokenManager.accessToken);
 
                 setToken(result.data.user.stsTokenManager.accessToken);
 
-                router.push('/profile');
+                router.push('/');
             } else if (response.status === 500) {
                 setError(result.message);
 
