@@ -5,6 +5,7 @@ import { Button, FloatingLabel } from 'flowbite-react';
 import { FaLinkedin, FaInstagramSquare, FaFacebook, FaRegCopyright } from "react-icons/fa";
 
 import ContactForm from './contact';
+import ScrollToTopButton from '../layouts/scrollButton';
 
 const Footer = () => {
     return (
@@ -66,6 +67,8 @@ const Footer = () => {
                         this site, you agree to comply with all applicable laws and regulations.
                     </p>
                 </div>
+
+                <ScrollToTopButton />
             </div>
         </main>
     );
