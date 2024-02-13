@@ -102,7 +102,7 @@ const SignInForm = () => {
 
                 {isVisible && <span className='text-sm text-red-500 mt-2'>{error}</span>}
 
-                <Button type="submit" className="joobify-main-color mt-3 btn-style light-font" pill>
+                <Button disabled type="submit" className="joobify-main-color mt-3 btn-style light-font" pill>
                     Sign in
                 </Button>
 
