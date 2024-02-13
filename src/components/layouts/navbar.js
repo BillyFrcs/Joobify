@@ -82,7 +82,7 @@ const Navigation = ({ linkName, navName }) => {
               </NavbarCollapse>
 
               <Link href="/profile">
-                <Avatar className="mr-5 rounded" img={user.photoURL} alt={user.displayName} rounded />
+                <Avatar className="mr-5 rounded" img={user?.photoURL || '/images/DefaultProfile.svg'} alt={user.displayName} rounded />
               </Link>
 
               {/* 
@@ -192,7 +192,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
               </NavbarCollapse>
 
               <Link href="/profile">
-                <Avatar className="mr-5 rounded-full shadow-lg" img={user.photoURL} alt={user.displayName} rounded />
+                <Avatar className="mr-5 rounded-full shadow-lg" img={user?.photoURL || '/images/DefaultProfile.svg'} alt={user.displayName} rounded />
               </Link>
 
               {/* <Dropdown
