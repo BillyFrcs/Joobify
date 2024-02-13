@@ -10,8 +10,8 @@ import { getAuth } from 'firebase/auth';
 
 import GoogleAuth from './googleAuth';
 import firebaseApp from '@/config/firebaseApp';
+import WarningMessage from '../layouts/warning';
 
-import { WarningMessageSignUp } from '../layouts/warning';
 import { joobifyEndpoint } from '@/utils/api';
 
 const SignUpForm = () => {
@@ -101,7 +101,7 @@ const SignUpForm = () => {
                     <input disabled type="password" autoComplete="on" id="password" name="password" value={formData.password} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required={true} />
                 </div>
                 
-                <WarningMessageSignUp />
+                <WarningMessage message="Sign Up" />
 
                 {isVisible && <span className='text-sm text-red-500 mt-2'>{error}</span>}
 
