@@ -26,10 +26,15 @@
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "framer-motion": "^11.0.3",
+    "fs": "^0.0.1-security",
+    "net": "^1.0.2",
     "next": "14.0.4",
+    "path": "^0.12.7",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.0.1"
+    "react-firebase-hooks": "^5.1.1",
+    "react-icons": "^5.0.1",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
