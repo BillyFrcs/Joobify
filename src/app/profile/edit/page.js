@@ -145,7 +145,7 @@ const Profile = () => {
                         </Tabs.Item>
 
                         <Tabs.Item title="Password" icon={RiLockPasswordFill}>
-                            <ChangePasswordForm />
+                            <ChangePasswordForm user={user} />
                         </Tabs.Item>
                     </Tabs>
                 </div>
