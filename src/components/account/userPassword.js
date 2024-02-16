@@ -18,18 +18,18 @@ const ChangePasswordForm = () => {
 
                         <div className='mt-5'>
                             <div className="mb-5">
-                                <Label htmlFor="user-current-password" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Current Password</Label>
-                                <input type="password" id="user-current-password" name="user-current-password" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password saat ini" required={true} />
+                                <Label htmlFor="currentPassword" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Current Password</Label>
+                                <input type="password" id="currentPassword" name="currentPassword" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password saat ini" required={true} />
                             </div>
 
                             <div className="mb-5">
-                                <Label htmlFor="user-new-password" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">New Password</Label>
-                                <input type="password" id="user-new-password" name="user-new-password" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password baru" required={true} />
+                                <Label htmlFor="newPassword" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">New Password</Label>
+                                <input type="password" id="newPassword" name="newPassword" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password baru" required={true} />
                             </div>
 
                             <div className="mb-5">
-                                <Label htmlFor="user-retype-password" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Retype New Password</Label>
-                                <input type="password" id="user-retype-password" name="user-retype-password" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ulangi password baru" required={true} />
+                                <Label htmlFor="confirmPassword" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Confirm New Password</Label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" disabled={false} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Konfirmasi password baru" required={true} />
                             </div>
                         </div>
 
