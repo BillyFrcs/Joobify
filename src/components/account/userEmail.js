@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { axiosInstance } from "@/utils/axios";
 import { Button, Card, FileInput, Label, Textarea, Select, Tabs } from 'flowbite-react';
 
-const ChangeEmailForm = ({ user, setUser }) => {
+const ChangeEmailForm = ({ user }) => {
     const [newEmail, setNewEmail] = useState('');
     const [password, setPassword] = useState('');
     const [success, setSuccess] = useState(null);
