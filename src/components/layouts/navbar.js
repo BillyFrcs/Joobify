@@ -11,7 +11,8 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 
-import firebaseApp from '@/config/firebaseApp';
+import { axiosInstance } from "@/utils/axios";
+import { firebaseApp } from '@/config/firebaseApp';
 
 import '../../styles/globals.css';
 
@@ -23,6 +24,27 @@ const Navigation = ({ linkName, navName }) => {
   const auth = getAuth(firebaseApp);
   const router = useRouter();
 
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem('token');
+
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      axiosInstance.get('/users/userProfile').then((response) => {
+        setUser(response.data.data);
+
+        // console.log(response.data.data);
+      }).catch((error) => {
+        // router.push('/')
+
+        // console.error('Error fetching protected data: ', error);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [router]);
+
+  /*
   useEffect(() => {
     const auth = getAuth(firebaseApp);
 
@@ -36,6 +58,7 @@ const Navigation = ({ linkName, navName }) => {
 
     return () => unsubscribe();
   }, []);
+  */
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -49,16 +72,6 @@ const Navigation = ({ linkName, navName }) => {
 
   const handleSetActive = (navItem) => {
     setActive(navItem);
-  };
-
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-
-      router.push('/');
-    } catch (error) {
-      console.error('Error signing out with Google: ', error.message);
-    }
   };
 
   return (
@@ -82,7 +95,7 @@ const Navigation = ({ linkName, navName }) => {
               </NavbarCollapse>
 
               <Link href="/profile">
-                <Avatar className="mr-5 rounded" img={user?.photoURL || '/images/DefaultProfile.svg'} alt={user.displayName} rounded />
+                <Avatar className="mr-5 rounded" img={user?.userProfileImage || '/images/DefaultProfile.svg'} alt={user?.name} rounded />
               </Link>
 
               {/* 
@@ -106,7 +119,7 @@ const Navigation = ({ linkName, navName }) => {
             </DropdownItem>
             <DropdownDivider />
 
-            <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
+            <DropdownItem className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
           </Dropdown> */}
             </div>
           )
@@ -134,6 +147,27 @@ const MinimalNavigation = ({ linkName, navName }) => {
   const router = useRouter();
 
   useEffect(() => {
+    try {
+      const token = localStorage.getItem('token');
+
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      axiosInstance.get('/users/userProfile').then((response) => {
+        setUser(response.data.data);
+
+        // console.log(response.data.data);
+      }).catch((error) => {
+        // router.push('/')
+
+        // console.error('Error fetching protected data: ', error);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [router]);
+
+  /*
+  useEffect(() => {
     const auth = getAuth(firebaseApp);
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -146,6 +180,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
 
     return () => unsubscribe();
   }, []);
+  */
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -159,16 +194,6 @@ const MinimalNavigation = ({ linkName, navName }) => {
 
   const handleSetActive = (navItem) => {
     setActive(navItem);
-  };
-
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-
-      router.push('/');
-    } catch (error) {
-      console.error('Error signing out with Google: ', error.message);
-    }
   };
 
   return (
@@ -192,7 +217,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
               </NavbarCollapse>
 
               <Link href="/profile">
-                <Avatar className="mr-5 rounded-full shadow-lg" img={user?.photoURL || '/images/DefaultProfile.svg'} alt={user.displayName} rounded />
+                <Avatar className="mr-5 rounded-full shadow-lg" img={user?.userProfileImage || '/images/DefaultProfile.svg'} alt={user?.name} rounded />
               </Link>
 
               {/* <Dropdown
@@ -215,7 +240,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
               </DropdownItem>
               <DropdownDivider />
 
-              <DropdownItem onClick={signOutUser} className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
+              <DropdownItem className='hover:bg-red-500' color='failure'>Sign out</DropdownItem>
             </Dropdown> */}
             </div>
           )

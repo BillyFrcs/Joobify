@@ -3,7 +3,7 @@
 import { Button, FloatingLabel } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 
-import axiosInstance from '@/utils/axios';
+import { axiosInstance } from "@/utils/axios";
 
 const ContactForm = () => {
     const [name, setName] = useState('');

@@ -7,13 +7,14 @@ import { Button, Card } from 'flowbite-react';
 import { FaBuilding, FaRegTrashAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { TiEdit } from "react-icons/ti";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
-
-import firebaseApp from '@/config/firebaseApp';
+import { firebaseApp } from '@/config/firebaseApp';
 
 const Dashboard = () => {
     const auth = getAuth(firebaseApp);
@@ -21,6 +22,26 @@ const Dashboard = () => {
 
     const [user, setUser] = useState(null);
     const [randomMessages, setRandomMessages] = useState('');
+
+    useEffect(() => {
+        try {
+            const token = localStorage.getItem('token');
+
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            axiosInstance.get('/users/userProfile').then((response) => {
+                setUser(response.data.data);
+
+                console.log(response.data.data);
+            }).catch((error) => {
+                router.push('/')
+
+                // console.error('Error fetching protected data: ', error);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [router]);
 
     useEffect(() => {
         const getRandomMessages = () => {
@@ -47,6 +68,7 @@ const Dashboard = () => {
         getRandomMessages();
     }, []);
 
+    /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
 
@@ -54,13 +76,14 @@ const Dashboard = () => {
             if (user) {
                 setUser(user);
             } else {
-                router.push('/signin');
+                // router.push('/signin');
             }
         });
 
         return () => unsubscribe();
     }, [auth, router]);
-
+    */
+    
     return (
         <div>
             <div>
@@ -69,7 +92,7 @@ const Dashboard = () => {
                 <div className='bg-[#263238] dashboard-container w-full h-auto'>
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>
                         <div className='mt-20 mb-20'>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : ''}.</span></h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user?.name}.</span></h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Selamat Datang</h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Di Dashboard</h1>
 

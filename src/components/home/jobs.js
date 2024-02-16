@@ -7,9 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Card } from 'flowbite-react';
 import { FaBuilding } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-
-import axiosInstance from '@/utils/axios';
-
+import { axiosInstance } from "@/utils/axios";
 import { joobifyEndpoint } from '@/utils/api';
 
 import JobSearching from './searching';

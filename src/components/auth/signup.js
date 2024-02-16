@@ -9,10 +9,12 @@ import { Button } from 'flowbite-react';
 import { getAuth } from 'firebase/auth';
 
 import GoogleAuth from './googleAuth';
-import firebaseApp from '@/config/firebaseApp';
 import WarningMessage from '../layouts/warning';
 
+import { axiosInstance } from "@/utils/axios";
+import { firebaseApp } from '@/config/firebaseApp';
 import { joobifyEndpoint } from '@/utils/api';
+import { auth } from '@/config/firebaseApp';
 
 const SignUpForm = () => {
     const router = useRouter();
@@ -47,6 +49,22 @@ const SignUpForm = () => {
         event.preventDefault();
 
         try {
+            const response = await axiosInstance.post('/auth/signup', formData);
+
+            if (response) {
+                const token = response.data.accessToken;
+
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('token', token);
+                }
+
+                // console.log(token);
+
+                // Signup successful, redirect or show success message
+                router.push('/');
+            }
+
+            /*
             const response = await fetch(`${joobifyEndpoint}/auth/signup`, {
                 method: 'POST',
                 headers: {
@@ -75,8 +93,18 @@ const SignUpForm = () => {
 
                 console.log(result.error);
             }
+            */
         } catch (error) {
-            console.error('Error occurred: ', error);
+            setError(error.response.data.error);
+
+            setIsVisible(true);
+
+            // Set the timeout
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 5000);
+
+            // console.error('Error occurred: ', error.response.data.error);
         }
     };
 
@@ -88,24 +116,24 @@ const SignUpForm = () => {
             <form method='POST' onSubmit={handleSubmit} className="mt-6 grid grid-flow-row justify-start">
                 <div className="mb-4">
                     <label htmlFor="name" className="black-color w-80 block mb-2 text-sm font-medium text-gray-900 dark:text-white light-font">Full name</label>
-                    <input disabled type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required={true} />
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required={true} />
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="email" className="black-color w-80 block mb-2 text-sm font-medium text-gray-900 dark:text-white light-font">Email address</label>
-                    <input disabled type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="password" className="black-color w-80 block mb-2 text-sm font-medium text-gray-900 dark:text-white light-font">Your password</label>
-                    <input disabled type="password" autoComplete="on" id="password" name="password" value={formData.password} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required={true} />
+                    <input type="password" autoComplete="on" id="password" name="password" value={formData.password} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required={true} />
                 </div>
-                
-                <WarningMessage message="Sign Up" />
+
+                {/* <WarningMessage message="Sign Up" /> */}
 
                 {isVisible && <span className='text-sm text-red-500 mt-2'>{error}</span>}
 
-                <Button disabled type="submit" className="joobify-main-color mt-3 btn-style light-font" pill>
+                <Button type="submit" className="joobify-main-color mt-3 btn-style light-font" pill>
                     Sign up
                 </Button>
 

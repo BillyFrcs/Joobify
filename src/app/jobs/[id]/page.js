@@ -10,8 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Footer from '@/components/home/footer';
-import axiosInstance from '@/utils/axios';
 
+import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 
 const getData = async ({ id }) => {

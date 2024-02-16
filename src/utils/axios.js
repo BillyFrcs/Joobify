@@ -3,7 +3,16 @@ import axios from "axios";
 const axiosInstance = axios.create({
     baseURL: process.env.JOOBIFY_ENDPOINT,
     headers: {
-        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json"
+    }
+});
+
+const axiosInstanceMultipart = axios.create({
+    baseURL: process.env.JOOBIFY_ENDPOINT,
+    headers: {
+        // "Authorization": "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
     }
 });
 
@@ -35,4 +44,4 @@ axiosInstance.interceptors.response.use(
 );
 */
 
-export default axiosInstance;
+export { axiosInstance, axiosInstanceMultipart };

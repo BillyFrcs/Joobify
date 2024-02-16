@@ -11,9 +11,9 @@ import { TiEdit } from "react-icons/ti";
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
-
-import firebaseApp from '@/config/firebaseApp';
+import { firebaseApp } from '@/config/firebaseApp';
 
 const PostJob = () => {
     const auth = getAuth(firebaseApp);
@@ -21,6 +21,27 @@ const PostJob = () => {
 
     const [user, setUser] = useState(null);
 
+    useEffect(() => {
+        try {
+            const token = localStorage.getItem('token');
+
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            axiosInstance.get('/users/userProfile').then((response) => {
+                setUser(response.data.data);
+
+                console.log(response.data.data);
+            }).catch((error) => {
+                router.push('/')
+
+                // console.error('Error fetching protected data: ', error);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [router]);
+
+    /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
 
@@ -34,6 +55,7 @@ const PostJob = () => {
 
         return () => unsubscribe();
     }, [auth, router]);
+    */
 
     return (
         <div>
@@ -43,7 +65,7 @@ const PostJob = () => {
                 <div className='bg-[#263238] dashboard-container w-full h-auto'>
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>
                         <div className='mt-20 mb-20'>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user ? user.displayName : 'Guest'}.</span></h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user?.name}.</span></h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Silahkan posting lowongan pekerjaan</h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Jika anda memiliki informasi</h1>
                             <h1 className="font-bold mt-1 text-white text-4xl">Mengenai lowongan pekerjaan</h1>
