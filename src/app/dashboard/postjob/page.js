@@ -30,7 +30,7 @@ const PostJob = () => {
             axiosInstance.get('/users/userProfile').then((response) => {
                 setUser(response.data.data);
 
-                console.log(response.data.data);
+                // console.log(response.data.data);
             }).catch((error) => {
                 router.push('/')
 
