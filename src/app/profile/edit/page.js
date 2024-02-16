@@ -141,7 +141,7 @@ const Profile = () => {
                         </Tabs.Item>
 
                         <Tabs.Item title="Email" icon={MdEmail}>
-                            <ChangeEmailForm user={user} />
+                            <ChangeEmailForm user={user} setUser={setUser} />
                         </Tabs.Item>
 
                         <Tabs.Item title="Password" icon={RiLockPasswordFill}>
