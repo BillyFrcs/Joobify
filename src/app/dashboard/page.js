@@ -57,7 +57,7 @@ const Dashboard = () => {
             setJobs(response.data.data);
             setActivateTotalJob(true);
 
-            console.log(response.data.data);
+            // console.log(response.data.data);
         }).catch((error) => {
             setError("Anda belum posting lowongan pekerjaan, posting dulu ga sih?");
 
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
             // router.push('/')
 
-            console.error('Error fetching jobs data: ', error.response.data.message);
+            // console.error('Error fetching jobs data: ', error.response.data.message);
         });
     }, []);
 
