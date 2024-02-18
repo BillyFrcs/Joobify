@@ -57,17 +57,27 @@ const Dashboard = () => {
             setJobs(response.data.data);
             setActivateTotalJob(true);
 
+            if (jobs.length == 0) {
+                setError("Anda belum posting lowongan pekerjaan, posting dulu ga sih?");
+
+                setActivateTotalJob(false);
+            } else {
+                setError("");
+
+                setActivateTotalJob(true);
+            }
+
             // console.log(response.data.data);
         }).catch((error) => {
-            setError("Anda belum posting lowongan pekerjaan, posting dulu ga sih?");
+            // setError("Anda belum posting lowongan pekerjaan, posting dulu ga sih?");
 
-            setActivateTotalJob(false);
+            // setActivateTotalJob(false);
 
             // router.push('/')
 
             // console.error('Error fetching jobs data: ', error.response.data.message);
         });
-    }, []);
+    });
 
     useEffect(() => {
         const getRandomMessages = () => {
@@ -136,14 +146,16 @@ const Dashboard = () => {
             </div>
 
             {activateTotalJob != false ? (
-                <div className='flex justify-center items-center mt-[3rem]'>
-                    <h1 className='black-color text-1xl font-bold'>Anda memiliki {jobs?.length} lowongan pekerjaan yang telah di posting</h1>
+                <div className='flex justify-center items-center mt-10'>
+                    <h1 className='black-color text-1xl font-medium '>Anda memiliki {jobs?.length} lowongan pekerjaan yang telah di posting</h1>
                 </div>
             ) : <></>}
 
+            <p className='text-md font-medium black-color text-center flex justify-center items-center mt-10'>{error}</p>
+
             <main className='flex flex-col md:order-2 justify-center items-center pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-center'>
-                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
+                    <div className='container mt-0 mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
                         {jobs ? jobs.map((job, id) => (
                             <>
                                 <div key={id}>
