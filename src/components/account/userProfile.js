@@ -94,7 +94,7 @@ const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, 
                             <div className="mb-2 block">
                                 <Label htmlFor="about" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="About" />
                             </div>
-                            <Textarea id="about" name="about" placeholder="About you" value={user?.about} onChange={handleChange} required rows={10} cols={50} />
+                            <Textarea id="about" name="about" placeholder="About you" value={user?.about} onChange={handleChange} required={true} rows={10} cols={50} />
                         </div>
 
                         <div className='mt-6'>
