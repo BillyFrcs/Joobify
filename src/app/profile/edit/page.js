@@ -46,7 +46,7 @@ const Profile = () => {
                 // console.error('Error fetching protected data: ', error);
             });
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     }, [router]); // Run once on component mount
 
@@ -107,7 +107,7 @@ const Profile = () => {
                 // console.error('Error updating user data: ', error);
             });
         } catch (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
 
         // console.log('Updated user data: ', user);

@@ -16,12 +16,35 @@ import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
 import { axiosInstanceMultipart } from '@/utils/axios';
 
-const PostJob = () => {
+const getJobDetail = async ({ id }) => {
+    try {
+        const token = localStorage.getItem('token');
+
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        const response = await axiosInstance.get(`/jobs/displayJobDetail/${id}`);
+
+        return response.data;
+    } catch (error) {
+        // console.error(error);
+
+        return;
+    }
+
+    /*
+    const res = await fetch(`${joobifyEndpoint}/jobs/jobDetail/${id}`);
+
+    return res.json();
+    */
+};
+
+const UpdateJob = ({ params }) => {
     const auth = getAuth(firebaseApp);
     const router = useRouter();
 
     const [user, setUser] = useState(null);
     const [job, setJob] = useState(null);
+    const [jobID, setJobID] = useState(null);
     const [companyProfileImage, setCompanyProfileImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
     const [error, setError] = useState(null);
@@ -47,6 +70,17 @@ const PostJob = () => {
         }
     }, [router]);
 
+    useEffect(() => {
+        const { id } = params;
+
+        getJobDetail({ id }).then((response) => {
+            setJobID(id);
+            setJob(response.data);
+
+            // console.log(response.data);
+        });
+    }, [params]);
+
     const handleChange = (event) => {
         setJob({ ...job, [event.target.name]: event.target.value });
     };
@@ -66,6 +100,7 @@ const PostJob = () => {
         reader.readAsDataURL(selectedImage);
     };
 
+    // Callback function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -85,8 +120,8 @@ const PostJob = () => {
             };
 
             // Handle form submission logic, such as sending data to the server
-            await axiosInstanceMultipart.post(`/jobs/postJob`, formData, { 'headers': contents }).then((response) => {
-                // console.log('Posted job data: ', response.data.data);
+            await axiosInstanceMultipart.put(`/jobs/updateUserJob/${jobID}`, formData, { 'headers': contents }).then((response) => {
+                // console.log('Updated job data: ', response.data.data);
 
                 router.push('/dashboard');
             }).catch((error) => {
@@ -107,8 +142,15 @@ const PostJob = () => {
             // console.log(error);
         }
 
-        // console.log('Posted job data: ', user);
+        // console.log('Updated job data: ', user);
     };
+
+    if (!job)
+        return (
+            <div>
+                <p className='text-center black-color mt-10 mb-10'>Memuat data pekerjaan, harap tunggu...</p>
+            </div>
+        );
 
     /*
     useEffect(() => {
@@ -127,7 +169,7 @@ const PostJob = () => {
     */
 
     return (
-        <div>
+        <>
             <div>
                 <MinimalNavigation linkName="/dashboard" navName="Dashboard" />
 
@@ -135,9 +177,8 @@ const PostJob = () => {
                     <main className='flex flex-col container md:order-2 ml-9 pl-5 pt-20' id='about'>
                         <div className='mt-20 mb-20'>
                             <h1 className="font-bold mt-1 text-white text-4xl">Halo, <span className="main-color">{user?.name}.</span></h1>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Silahkan posting lowongan pekerjaan</h1>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Jika anda memiliki informasi</h1>
-                            <h1 className="font-bold mt-1 text-white text-4xl">Mengenai lowongan pekerjaan</h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Silahkan update lowongan pekerjaan</h1>
+                            <h1 className="font-bold mt-1 text-white text-4xl">Jika ada yang ingin diubah</h1>
                         </div>
                     </main>
                 </div>
@@ -149,7 +190,7 @@ const PostJob = () => {
 
             <main className='flex flex-col md:order-2 ml-auto pl-auto pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-between'>
-                    <form method='POST' onSubmit={handleSubmit}>
+                    <form method='PUT' onSubmit={handleSubmit}>
                         <div className="flex w-full items-center justify-center">
                             <Label
                                 htmlFor="companyProfileImage"
@@ -181,41 +222,39 @@ const PostJob = () => {
                                 <FileInput id="companyProfileImage" name="companyProfileImage" onChange={handleImageChange} itemType='image' accept='image/*' className="hidden" />
                             </Label>
 
-                            <Image className="z-0 shadow-lg new-company-profile-image ml-5" alt="" src={previewUrl} height={0} width={0} />
-
-                            {/* <div className='flex flex-col justify-start items-start mt-[30rem]'>
-                                <Image className="z-0 shadow-lg new-company-profile-image" alt="" src={previewUrl} height={0} width={0} />
-                            </div>  */}
+                            <div className='flex flex-col justify-start items-start ml-5'>
+                                <Image className="z-0 shadow-lg new-company-profile-image-update" alt={job?.companyName} src={previewUrl || job?.companyProfileImage} height={0} width={0} />
+                            </div>
 
                             <div className='ml-10 flex flex-col items-center justify-center'>
                                 <div className="mb-4">
                                     <Label htmlFor="title" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Nama Pekerjaan</Label>
-                                    <input type="text" id="title" name="title" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama pekerjaan" required={true} />
+                                    <input type="text" id="title" name="title" value={job?.title} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama pekerjaan" required={true} />
                                 </div>
 
                                 <div className="mb-4">
                                     <Label htmlFor="companyName" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Nama Perusahaan</Label>
-                                    <input type="text" id="companyName" name="companyName" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama perusahaan" required={true} />
+                                    <input type="text" id="companyName" name="companyName" value={job?.companyName} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama perusahaan" required={true} />
                                 </div>
 
                                 <div className="mb-4">
                                     <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi Perusahaan</Label>
-                                    <input type="text" id="location" name="location" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lokasi" required={true} />
+                                    <input type="text" id="location" name="location" value={job?.location} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lokasi" required={true} />
                                 </div>
 
                                 <div className="mb-4">
                                     <Label htmlFor="email" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Email Perusahaan</Label>
-                                    <input type="email" id="email" name="email" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
+                                    <input type="email" id="email" name="email" value={job?.email} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
                                 </div>
                             </div>
 
                             <div className="max-w-md justify-end items-end ml-20 mt-[4rem]">
                                 <div className=''>
                                     <div className="mb-2 block">
-                                        <Label htmlFor="jobType" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Tipe Pekerjaan" />
+                                        <Label htmlFor="job-type" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Tipe Pekerjaan" />
                                     </div>
 
-                                    <Select className='' id="jobType" name="jobType" onChange={handleChange} required>
+                                    <Select className='' id="jobType" name="jobType" value={job?.jobType} onChange={handleChange} required>
                                         <option>Full-Time</option>
                                         <option>Part-Time</option>
                                         <option>Contract</option>
@@ -229,7 +268,7 @@ const PostJob = () => {
                                         <Label htmlFor="jobDescription" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Deskripsi Pekerjaan" />
                                     </div>
 
-                                    <Textarea id="jobDescription" name="jobDescription" onChange={handleChange} placeholder="Deskripsi pekerjaan" required rows={10} cols={50} />
+                                    <Textarea id="jobDescription" name="jobDescription" value={job?.jobDescription} onChange={handleChange} placeholder="Deskripsi pekerjaan" required rows={10} cols={50} />
                                 </div>
 
                                 <div className='mt-6'>
@@ -237,7 +276,7 @@ const PostJob = () => {
                                 </div>
 
                                 <div className='flex mt-5 gap-4'>
-                                    <Button type='submit' className='btn-style main-font light-font joobify-main-color'>Post</Button>
+                                    <Button type='submit' className='btn-style main-font light-font joobify-main-color'>Update</Button>
 
                                     <Link href="/dashboard" className='btn-style w-auto h-auto light-font px-4 py-2 bg-[red] hover:bg-[#373737] rounded-lg text-white hover:text-white shadow-md'>Cancel</Link>
                                 </div>
@@ -249,8 +288,8 @@ const PostJob = () => {
                     </div>
                 </div>
             </main>
-        </div>
+        </>
     );
 };
 
-export default PostJob;
+export default UpdateJob;

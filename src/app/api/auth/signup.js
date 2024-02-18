@@ -6,7 +6,7 @@ export default async function handler(req, res) {
             const { name, email, password } = req.body;
 
             // Send request to authentication service for signup
-            const response = await axiosInstance.post('https://your-auth-service.com/signup', {
+            const response = await axiosInstance.post('/auth/signup', {
                 name,
                 email,
                 password,

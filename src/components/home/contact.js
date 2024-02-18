@@ -53,10 +53,10 @@ const ContactForm = () => {
                     setIsVisible(false);
                 }, 5000);
             } else if (response.status === 500) {
-                console.log(response.error);
+                // console.log(response.error);
             }
         } catch (error) {
-            console.error('Error occurred: ', error);
+            // console.error('Error occurred: ', error);
         }
     };
 

@@ -57,7 +57,7 @@ const JobsList = () => {
                 setJobs(results.data);
                 */
             } catch (error) {
-                console.log('Failed to fetch data: ' + error.message);
+                // console.log('Failed to fetch data: ' + error.message);
             }
         }
 

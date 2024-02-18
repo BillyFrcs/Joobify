@@ -11,6 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import DeleteJob from '@/components/jobs/deleteJob';
 
 import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
@@ -21,6 +22,10 @@ const Dashboard = () => {
     const router = useRouter();
 
     const [user, setUser] = useState(null);
+    const [jobID, setJobID] = useState(null);
+    const [jobs, setJobs] = useState(null);
+    const [activateTotalJob, setActivateTotalJob] = useState(false);
+    const [error, setError] = useState('');
     const [randomMessages, setRandomMessages] = useState('');
 
     useEffect(() => {
@@ -42,6 +47,27 @@ const Dashboard = () => {
             console.error(error);
         }
     }, [router]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        axiosInstance.get('/jobs/displayUserJobs').then((response) => {
+            setJobs(response.data.data);
+            setActivateTotalJob(true);
+
+            console.log(response.data.data);
+        }).catch((error) => {
+            setError("Anda belum posting lowongan pekerjaan, posting dulu ga sih?");
+
+            setActivateTotalJob(false);
+
+            // router.push('/')
+
+            console.error('Error fetching jobs data: ', error.response.data.message);
+        });
+    }, []);
 
     useEffect(() => {
         const getRandomMessages = () => {
@@ -68,6 +94,10 @@ const Dashboard = () => {
         getRandomMessages();
     }, []);
 
+    if (!jobs)
+        return <p className='text-center mt-10 mb-10'>Memuat dashboard anda, tunggu sebentar yaa</p>;
+
+
     /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
@@ -83,7 +113,7 @@ const Dashboard = () => {
         return () => unsubscribe();
     }, [auth, router]);
     */
-    
+
     return (
         <div>
             <div>
@@ -106,68 +136,56 @@ const Dashboard = () => {
                 </div>
             </div>
 
+            {activateTotalJob != false ? (
+                <div className='flex justify-center items-center mt-[3rem]'>
+                    <h1 className='black-color text-1xl font-bold'>Anda memiliki {jobs?.length} lowongan pekerjaan yang telah di posting</h1>
+                </div>
+            ) : <></>}
+
             <main className='flex flex-col md:order-2 justify-center items-center pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-center'>
                     <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
-                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                        {jobs ? jobs.map((job, id) => (
+                            <>
+                                <div key={id}>
+                                    <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job?.companyProfileImage} horizontal="true">
+                                        <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job?.title}</h5>
 
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job?.companyName} <span className='text-md main-color font-bold'>({job?.jobType})</span></p>
+                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job?.location}</p>
 
-                            <div className='flex justify-start gap-4'>
-                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                            </div>
+                                        <div className='flex justify-start gap-4'>
+                                            <Link href={{ pathname: `/dashboard/jobs/edit/${job?.id}` }} className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
 
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                        </Card>
+                                            <DeleteJob jobID={job?.id} />
+                                        </div>
 
-                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
+                                        <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
+                                        <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>
+                                    </Card>
+                                </div>
 
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
+                                {/*
+                            <Link key={id} href={{ pathname: `/jobs/${job?.id}` }}>
+                                <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job?.companyProfileImage} horizontal="true">
+                                    <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job?.title}</h5>
 
-                            <div className='flex justify-start gap-4'>
-                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                            </div>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job?.companyName} <span className='text-md main-color font-bold'>({job?.jobType})</span></p>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job?.location}</p>
 
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                        </Card>
+                                    <div className='flex justify-start gap-4'>
+                                        <Link href={{ pathname: `/dashboard/jobs/edit/${job?.id}` }} className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
+                                        
+                                        <DeleteJob jobID={job?.id} />
+                                    </div>
 
-                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
-
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
-
-                            <div className='flex justify-start gap-4'>
-                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                            </div>
-
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                        </Card>
-
-                        <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" horizontal="true">
-                            <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">TV Service</h5>
-
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> Samsung Service Center <span className='text-md main-color font-bold'>(Full-Time)</span></p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> Ambon, Maluku</p>
-
-                            <div className='flex justify-start gap-4'>
-                                <Link href="/dashboard/edit/id" className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                <Link href="" className='bg-red-600 hover:bg-[#373737] text-white px-4 py-2 shadow-md rounded-lg'><FaRegTrashAlt className='text-[1rem] inline-block' /></Link>
-                            </div>
-
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada 24 Januari 2024</p>
-                            <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada 26 Januari 2024</p>
-                        </Card>
+                                    <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
+                                    <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>
+                                </Card>
+                        </Link>
+                        */}
+                            </>
+                        )) : <p className='text-md black-color text-center flex justify-center items-center'>{error}</p>}
                     </div>
                 </div>
             </main>

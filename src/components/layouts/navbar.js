@@ -162,7 +162,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
         // console.error('Error fetching protected data: ', error);
       });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }, [router]);
 

@@ -46,6 +46,20 @@
   position: inherit;
 }
 
+.new-company-profile-image {
+  width: 250px;
+  height: auto;
+  object-fit: contain;
+  position: inherit;
+}
+
+.new-company-profile-image-update {
+  width: 1000px;
+  height: auto;
+  object-fit: contain;
+  position: inherit;
+}
+
 .forgot-password-image {
   width: 500px;
   height: auto;

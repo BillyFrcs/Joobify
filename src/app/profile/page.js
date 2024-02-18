@@ -36,7 +36,7 @@ const Profile = () => {
                 // console.error('Error fetching protected data: ', error);
             });
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     }, [user, router]);
 
@@ -48,7 +48,7 @@ const Profile = () => {
                 router.push('/');
             })
         } catch (error) {
-            console.error('Error signing out: ', error.message);
+            // console.error('Error signing out: ', error.message);
         }
     };
 

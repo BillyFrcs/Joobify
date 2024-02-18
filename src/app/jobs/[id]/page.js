@@ -14,7 +14,7 @@ import Footer from '@/components/home/footer';
 import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 
-const getData = async ({ id }) => {
+const getJobDetail = async ({ id }) => {
     const response = await axiosInstance.get(`/jobs/jobDetail/${id}`);
 
     return response.data;
@@ -27,7 +27,6 @@ const getData = async ({ id }) => {
 };
 
 const JobDetail = ({ params }) => {
-
     const [job, setJob] = useState(null);
 
     const router = useRouter();
@@ -35,7 +34,7 @@ const JobDetail = ({ params }) => {
     useEffect(() => {
         const { id } = params;
 
-        getData({ id }).then((data) => {
+        getJobDetail({ id }).then((data) => {
             setJob(data);
         });
     }, [params]);
