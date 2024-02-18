@@ -148,7 +148,7 @@ const UpdateJob = ({ params }) => {
     if (!job)
         return (
             <div>
-                <p className='text-center black-color mt-10 mb-10'>Memuat data pekerjaan, harap tunggu...</p>
+                <p className='text-center black-color mt-10 mb-10'>Memuat data lowongan pekerjaan, tunggu sebentar yaa</p>
             </div>
         );
 

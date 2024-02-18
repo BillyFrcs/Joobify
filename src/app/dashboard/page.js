@@ -97,7 +97,6 @@ const Dashboard = () => {
     if (!jobs)
         return <p className='text-center mt-10 mb-10'>Memuat dashboard anda, tunggu sebentar yaa</p>;
 
-
     /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
