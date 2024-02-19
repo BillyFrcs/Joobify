@@ -13,6 +13,7 @@ import Image from 'next/image';
 
 import { axiosInstance } from "@/utils/axios";
 import { firebaseApp } from '@/config/firebaseApp';
+import { getToken } from '@/middleware/auth';
 
 import '../../styles/globals.css';
 
@@ -26,7 +27,7 @@ const Navigation = ({ linkName, navName }) => {
 
   useEffect(() => {
     try {
-      const token = localStorage.getItem('token');
+      const token = getToken();
 
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -148,7 +149,7 @@ const MinimalNavigation = ({ linkName, navName }) => {
 
   useEffect(() => {
     try {
-      const token = localStorage.getItem('token');
+      const token = getToken();
 
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
+import { getToken, clearToken } from '@/middleware/auth';
 
 const Profile = () => {
     const router = useRouter();
@@ -20,7 +21,7 @@ const Profile = () => {
 
     useEffect(() => {
         try {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -43,8 +44,8 @@ const Profile = () => {
     const signOut = async () => {
         try {
             axiosInstance.post('auth/logOut').then(() => {
-                localStorage.removeItem('token');
-
+                clearToken();
+                
                 router.push('/');
             })
         } catch (error) {

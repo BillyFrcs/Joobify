@@ -19,6 +19,7 @@ import { axiosInstance } from "@/utils/axios";
 import { axiosInstanceMultipart } from '@/utils/axios';
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
+import { getToken } from '@/middleware/auth';
 
 const Profile = () => {
     const auth = getAuth(firebaseApp);
@@ -32,7 +33,7 @@ const Profile = () => {
 
     useEffect(() => {
         try {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -84,7 +85,7 @@ const Profile = () => {
             formData.append('about', user?.about);
 
             const contents = {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${getToken()}`
             };
 
             // Handle form submission logic, such as sending data to the server

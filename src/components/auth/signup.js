@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 import GoogleAuth from './googleAuth';
 import WarningMessage from '../layouts/warning';
 
-import { verifyUserToken } from '@/middleware/auth';
+import { verifyUserToken, setToken, getToken } from '@/middleware/auth';
 import { axiosInstance } from "@/utils/axios";
 import { firebaseApp } from '@/config/firebaseApp';
 import { joobifyEndpoint } from '@/utils/api';
@@ -60,7 +60,9 @@ const SignUpForm = () => {
                 const token = response.data.accessToken;
 
                 if (typeof window !== 'undefined') {
-                    localStorage.setItem('token', token);
+                    setToken(token, 3600);
+
+                    // localStorage.setItem('token', token);
                 }
 
                 // console.log(token);

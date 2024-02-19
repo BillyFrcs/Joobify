@@ -15,10 +15,11 @@ import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
 import { axiosInstanceMultipart } from '@/utils/axios';
+import { getToken } from '@/middleware/auth';
 
 const getJobDetail = async ({ id }) => {
     try {
-        const token = localStorage.getItem('token');
+        const token = getToken();
 
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -52,7 +53,7 @@ const UpdateJob = ({ params }) => {
 
     useEffect(() => {
         try {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -116,7 +117,7 @@ const UpdateJob = ({ params }) => {
             formData.append('jobDescription', job?.jobDescription);
 
             const contents = {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${getToken()}`
             };
 
             // Handle form submission logic, such as sending data to the server

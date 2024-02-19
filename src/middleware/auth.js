@@ -20,9 +20,39 @@ export default async function verifyFirebaseToken(req, res) {
 }
 
 export const verifyUserToken = (router) => {
-    const token = localStorage.getItem('token');
+    const token = getToken();
 
     if (token) {
         router.push('/');
     }
+};
+
+export const setToken = (token, expiryTime) => {
+    const expirationTimestamp = new Date().getTime() + expiryTime * 1000;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('expirationTimestamp', expirationTimestamp);
+};
+
+export const getToken = () => {
+    const token = localStorage.getItem('token');
+    const expirationTimestamp = localStorage.getItem('expirationTimestamp');
+
+    if (!token || !expirationTimestamp) {
+        return null;
+    }
+
+    if (new Date().getTime() > expirationTimestamp) {
+        // Token has expired, clear it
+        clearToken();
+
+        return null;
+    }
+
+    return token;
+};
+
+export const clearToken = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationTimestamp');
 };

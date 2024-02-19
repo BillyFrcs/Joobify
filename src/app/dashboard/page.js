@@ -16,6 +16,7 @@ import DeleteJob from '@/components/jobs/deleteJob';
 import { axiosInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
+import { getToken } from '@/middleware/auth';
 
 const Dashboard = () => {
     const auth = getAuth(firebaseApp);
@@ -30,7 +31,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         try {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -49,7 +50,7 @@ const Dashboard = () => {
     }, [router]);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = getToken();
 
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

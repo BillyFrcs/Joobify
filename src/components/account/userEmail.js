@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { axiosInstance } from "@/utils/axios";
 import { Button, Card, FileInput, Label, Textarea, Select, Tabs } from 'flowbite-react';
+import { getToken } from '@/middleware/auth';
 
 const ChangeEmailForm = ({ user }) => {
     const [newEmail, setNewEmail] = useState('');
@@ -39,7 +40,7 @@ const ChangeEmailForm = ({ user }) => {
 
         try {
             const contents = {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${getToken()}`
             };
 
             axiosInstance.put('/auth/changeEmail', formData, { 'headers': contents }).then(response => {

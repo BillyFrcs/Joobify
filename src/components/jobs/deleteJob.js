@@ -4,6 +4,7 @@ import { axiosInstance } from "@/utils/axios";
 import { Button, Card, Modal } from 'flowbite-react';
 import { FaBuilding, FaRegTrashAlt } from "react-icons/fa";
 import { BsFillSendCheckFill } from "react-icons/bs";
+import { getToken } from '@/middleware/auth';
 
 const DeleteJob = ({ jobID }) => {
     const [openModal, setOpenModal] = useState(false);
@@ -14,7 +15,7 @@ const DeleteJob = ({ jobID }) => {
 
     const handleDelete = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
