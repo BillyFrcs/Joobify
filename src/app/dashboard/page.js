@@ -8,6 +8,7 @@ import { FaBuilding, FaRegTrashAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { TiEdit } from "react-icons/ti";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { motion } from 'framer-motion';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -56,7 +57,7 @@ const Dashboard = () => {
 
         axiosInstance.get('/jobs/displayUserJobs').then((response) => {
             setJobs(response.data.data);
-            
+
             setActivateTotalJob(true);
 
             if (jobs.length == 0) {
@@ -110,7 +111,7 @@ const Dashboard = () => {
     if (!jobs)
         return <p className='text-center mt-10 mb-10'>Memuat dashboard anda, tunggu sebentar yaa</p>;
     */
-    
+
     /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
@@ -162,7 +163,14 @@ const Dashboard = () => {
                     <div className='container mt-0 mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
                         {jobs ? jobs.map((job, id) => (
                             <>
-                                <div key={id}>
+                                <motion.div key={id}
+                                    initial={{
+                                        opacity: 0,
+                                        translateX: id % 2 === 0 ? -50 : 50,
+                                        translateY: -50,
+                                    }}
+                                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                                    transition={{ duration: 0.3, delay: id * 0.2 }}>
                                     <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job?.companyProfileImage} horizontal="true">
                                         <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job?.title}</h5>
 
@@ -178,7 +186,7 @@ const Dashboard = () => {
                                         <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
                                         <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>
                                     </Card>
-                                </div>
+                                </motion.div>
 
                                 {/*
                             <Link key={id} href={{ pathname: `/jobs/${job?.id}` }}>
