@@ -52,9 +52,11 @@ const Profile = () => {
         }
     };
 
+    /*
     if (!user)
         return <p className='text-center mt-10 mb-10'>Memuat profile anda, tunggu sebentar yaa</p>;
-
+    */
+    
     return (
         <div className=''>
             <MinimalNavigation linkName="/dashboard" navName="Dashboard" />
