@@ -55,6 +55,7 @@ const Dashboard = () => {
 
         axiosInstance.get('/jobs/displayUserJobs').then((response) => {
             setJobs(response.data.data);
+            
             setActivateTotalJob(true);
 
             if (jobs.length == 0) {

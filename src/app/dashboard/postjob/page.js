@@ -52,9 +52,15 @@ const PostJob = () => {
     };
 
     const handleImageChange = (event) => {
-        const selectedImage = event.target.files[0];
+        let selectedImage = event.target.files[0];
 
-        setCompanyProfileImage(selectedImage);
+        if (selectedImage.size !== 0) {
+            setCompanyProfileImage(selectedImage);
+
+            // console.log(selectedImage);
+        } else {
+            setCompanyProfileImage(null);
+        }
 
         // Preview the selected image
         const reader = new FileReader();
@@ -150,44 +156,20 @@ const PostJob = () => {
             <main className='flex flex-col md:order-2 ml-auto pl-auto pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-between'>
                     <form method='POST' onSubmit={handleSubmit}>
-                        <div className="flex w-full items-center justify-center">
-                            <Label
-                                htmlFor="companyProfileImage"
-                                className="dark:hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                            >
-                                <div className="flex flex-col items-center justify-center pb-6 pt-5">
-                                    <svg
-                                        className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 20 16"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                        />
-                                    </svg>
-                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                        <span className="font-semibold">Click to upload</span> or drag and drop
-                                    </p>
-                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">Logo perusahaan</p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
+                        <div className="flex w-full justify-end items-end mt-10">
+                            <div className='mb-[25rem] mr-[3rem] ml-[3rem]'>
+                                <div className='h-[30rem] w-[20rem] shadow-lg profile-container rounded-lg'> </div>
+
+                                <div className='flex justify-center items-center mt-[-25rem]'>
+                                    <Image className="rounded-lg z-0 shadow-lg company-profile-image" alt={companyProfileImage?.name} src={previewUrl || "/images/DefaultCompanyProfile.svg"} height={0} width={0} />
                                 </div>
 
-                                <FileInput id="companyProfileImage" name="companyProfileImage" onChange={handleImageChange} itemType='image' accept='image/*' className="hidden" />
-                            </Label>
+                                <div className='flex flex-col justify-center items-center mt-5'>
+                                    <h1 className="font-bold z-0 mt-1 black-color text-1xl">{companyProfileImage?.name}</h1>
+                                </div>
+                            </div>
 
-                            <Image className="z-0 shadow-lg new-company-profile-image ml-5" alt="" src={previewUrl} height={0} width={0} />
-
-                            {/* <div className='flex flex-col justify-start items-start mt-[30rem]'>
-                                <Image className="z-0 shadow-lg new-company-profile-image" alt="" src={previewUrl} height={0} width={0} />
-                            </div>  */}
-
-                            <div className='ml-10 flex flex-col items-center justify-center'>
+                            <div className='ml-10 mb-[10.4rem] flex flex-col justify-end items-end'>
                                 <div className="mb-4">
                                     <Label htmlFor="title" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Nama Pekerjaan</Label>
                                     <input type="text" id="title" name="title" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama pekerjaan" required={true} />
@@ -200,16 +182,43 @@ const PostJob = () => {
 
                                 <div className="mb-4">
                                     <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi Perusahaan</Label>
-                                    <input type="text" id="location" name="location" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lokasi" required={true} />
+                                    <input type="text" id="location" name="location" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lokasi perusahaan" required={true} />
                                 </div>
 
-                                <div className="mb-4">
-                                    <Label htmlFor="email" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Email Perusahaan</Label>
-                                    <input type="email" id="email" name="email" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required={true} />
-                                </div>
+                                <Label htmlFor="companyProfileImage" className="dark:hover:bg-bray-800 mb-10 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                                        <svg
+                                            className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 20 16"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                                            />
+                                        </svg>
+                                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                            <span className="font-semibold">Click to upload</span> or drag and drop
+                                        </p>
+                                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">Logo perusahaan</p>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
+                                    </div>
+
+                                    <FileInput onChange={handleImageChange} itemType='image' id="companyProfileImage" name="companyProfileImage" accept='image/*' className="hidden" />
+                                </Label>
                             </div>
 
-                            <div className="max-w-md justify-end items-end ml-20 mt-[4rem]">
+                            <div className="max-w-md justify-end items-end ml-10 mb-[14.3rem]">
+                                <div className="mb-2">
+                                    <Label htmlFor="email" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Email Perusahaan</Label>
+                                    <input type="email" id="email" name="email" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nomor telepon" required={true} />
+                                </div>
+
                                 <div className=''>
                                     <div className="mb-2 block">
                                         <Label htmlFor="jobType" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Tipe Pekerjaan" />
@@ -224,19 +233,18 @@ const PostJob = () => {
                                     </Select>
                                 </div>
 
-                                <div className='mt-5'>
+                                <div className='mt-4'>
                                     <div className="mb-2 block">
-                                        <Label htmlFor="jobDescription" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Deskripsi Pekerjaan" />
+                                        <Label htmlFor="jobDescription" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="About" />
                                     </div>
-
-                                    <Textarea id="jobDescription" name="jobDescription" onChange={handleChange} placeholder="Deskripsi pekerjaan" required rows={10} cols={50} />
+                                    <Textarea id="jobDescription" name="jobDescription" placeholder="Deskripsi pekerjaan" onChange={handleChange} required={true} rows={10} cols={50} />
                                 </div>
 
                                 <div className='mt-6'>
                                     {isVisible && <span className='text-sm text-red-500'>{error}</span>}
                                 </div>
 
-                                <div className='flex mt-5 gap-4'>
+                                <div className='flex mt-10 gap-4'>
                                     <Button type='submit' className='btn-style main-font light-font joobify-main-color'>Post</Button>
 
                                     <Link href="/dashboard" className='btn-style w-auto h-auto light-font px-4 py-2 bg-[red] hover:bg-[#373737] rounded-lg text-white hover:text-white shadow-md'>Cancel</Link>
@@ -244,9 +252,6 @@ const PostJob = () => {
                             </div>
                         </div>
                     </form>
-
-                    <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-between'>
-                    </div>
                 </div>
             </main>
         </div>
