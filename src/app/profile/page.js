@@ -54,7 +54,7 @@ const Profile = () => {
 
     /*
     if (!user)
-        return <p className='text-center mt-10 mb-10'>Memuat profile anda, tunggu sebentar yaa</p>;
+        return <p className='text-center black-color mt-10 mb-10'>Memuat profile anda, tunggu sebentar yaa</p>;
     */
     
     return (

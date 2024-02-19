@@ -113,6 +113,9 @@ const Profile = () => {
         // console.log('Updated user data: ', user);
     };
 
+    if (!user)
+        return <p className='text-center black-color mt-10 mb-10'>Memuat profile anda, tunggu sebentar yaa</p>;
+
     /*
     useEffect(() => {
         const auth = getAuth(firebaseApp);
