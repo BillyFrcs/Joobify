@@ -11,6 +11,7 @@ import { getAuth } from 'firebase/auth';
 import GoogleAuth from './googleAuth';
 import WarningMessage from '../layouts/warning';
 
+import { verifyUserToken } from '@/middleware/auth';
 import { axiosInstance } from "@/utils/axios";
 import { firebaseApp } from '@/config/firebaseApp';
 import { joobifyEndpoint } from '@/utils/api';
@@ -30,6 +31,10 @@ const SignUpForm = () => {
         setEmail('');
         setPassword('');
     }, []);
+
+    useEffect(() => {
+        verifyUserToken(router);
+    });
 
     // Form data
     const [formData, setFormData] = useState({

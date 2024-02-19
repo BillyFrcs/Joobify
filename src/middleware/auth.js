@@ -10,7 +10,7 @@ export default async function verifyFirebaseToken(req, res) {
 
     try {
         const decodedToken = await jwt.verify(idToken, process.env.API_KEY);
-        
+
         req.user = decodedToken;
 
         return next();
@@ -18,3 +18,11 @@ export default async function verifyFirebaseToken(req, res) {
         return res.status(401).json({ error: 'Invalid Firebase token' });
     }
 }
+
+export const verifyUserToken = (router) => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        router.push('/');
+    }
+};
