@@ -95,7 +95,7 @@ const Navigation = ({ linkName, navName }) => {
               </NavbarCollapse>
 
               <Link href="/profile">
-                <Avatar className="mr-5 rounded" img={user?.userProfileImage || '/images/DefaultProfile.svg'} alt={user?.name} rounded />
+                <Avatar className="mr-5 rounded-full shadow-lg" img={user?.userProfileImage || '/images/DefaultProfile.svg'} alt={user?.name} rounded />
               </Link>
 
               {/* 
