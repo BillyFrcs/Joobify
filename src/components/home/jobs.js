@@ -26,7 +26,6 @@ const JobsList = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [error, setError] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [updatedOn, setUpdatedOn] = useState('');
 
     const router = useRouter();
 
