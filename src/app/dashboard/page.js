@@ -184,7 +184,10 @@ const Dashboard = () => {
                                         </div>
 
                                         <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
-                                        <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>
+                                        
+                                        {job?.updatedOn ? (<p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>) : (<></>)}
+
+                                        {/* <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p> */}
                                     </Card>
                                 </motion.div>
 
