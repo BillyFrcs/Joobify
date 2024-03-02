@@ -261,6 +261,8 @@ const UpdateJob = ({ params }) => {
                                     </div>
 
                                     <Select className='' id="jobType" name="jobType" value={job?.jobType} onChange={handleChange} required>
+                                        <option className='font-bold' value="">Pilih tipe pekerjaan</option>
+                                       
                                         <option>Full-Time</option>
                                         <option>Part-Time</option>
                                         <option>Contract</option>

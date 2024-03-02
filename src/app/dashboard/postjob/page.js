@@ -225,7 +225,9 @@ const PostJob = () => {
                                         <Label htmlFor="jobType" className='black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font' value="Tipe Pekerjaan" />
                                     </div>
 
-                                    <Select className='' id="jobType" name="jobType" onChange={handleChange} required>
+                                    <Select className='' id="jobType" name="jobType" onChange={handleChange} placeholder="Pilih tipe pekerjaan" required>
+                                        <option className='font-bold' value="">Pilih tipe pekerjaan</option>
+                                        
                                         <option>Full-Time</option>
                                         <option>Part-Time</option>
                                         <option>Contract</option>

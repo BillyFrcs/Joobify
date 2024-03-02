@@ -87,6 +87,8 @@ const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, 
                         <div className='mb-4'>
                             <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi</Label>
                             <Select id="location" name="location" value={user?.location} onChange={handleChange} placeholder="Pilih lokasi" required>
+                                <option className='font-bold' value="">Pilih lokasi</option>
+
                                 {location?.map((loc, index) => (
                                     <option key={index} value={ConvertToPascalCase(loc?.name)}>{ConvertToPascalCase(loc?.name)}</option>
                                 ))}
