@@ -151,48 +151,21 @@ const Dashboard = () => {
             </div>
 
             {activateTotalJob != false ? (
-                <div className='flex justify-center items-center mt-10'>
-                    <h1 className='black-color text-1xl font-medium '>Anda memiliki {jobs?.length} lowongan pekerjaan yang telah di posting</h1>
-                </div>
-            ) : <></>}
-
-            <p className='text-md font-medium black-color text-center flex justify-center items-center mt-10'>{error}</p>
+                <h1 className='flex justify-center items-center text-center black-color font-medium mt-10 mb-10'>Anda memiliki {jobs?.length} lowongan pekerjaan yang telah di posting</h1>
+            ) : <h1 className='flex justify-center items-center text-center black-color font-medium mt-10'>{error}</h1>}
 
             <main className='flex flex-col md:order-2 justify-center items-center pt-auto h-auto'>
                 <div className='flex flex-col items-center justify-center'>
                     <div className='container mt-0 mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
-                        {jobs ? jobs.map((job, id) => (
-                            <>
-                                <motion.div key={id}
-                                    initial={{
-                                        opacity: 0,
-                                        translateX: id % 2 === 0 ? -50 : 50,
-                                        translateY: -50,
-                                    }}
-                                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-                                    transition={{ duration: 0.3, delay: id * 0.2 }}>
-                                    <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job?.companyProfileImage} horizontal="true">
-                                        <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job?.title}</h5>
-
-                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaBuilding className='inline-block' /> {job?.companyName} <span className='text-md main-color font-bold'>({job?.jobType})</span></p>
-                                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-normal"><FaLocationDot className='inline-block' /> {job?.location}</p>
-
-                                        <div className='flex justify-start gap-4'>
-                                            <Link href={{ pathname: `/dashboard/jobs/edit/${job?.id}` }} className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-
-                                            <DeleteJob jobID={job?.id} />
-                                        </div>
-
-                                        <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
-                                        
-                                        {job?.updatedOn ? (<p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>) : (<></>)}
-
-                                        {/* <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p> */}
-                                    </Card>
-                                </motion.div>
-
-                                {/*
-                            <Link key={id} href={{ pathname: `/jobs/${job?.id}` }}>
+                        {jobs?.map((job, id) => (
+                            <motion.div key={id}
+                                initial={{
+                                    opacity: 0,
+                                    translateX: id % 2 === 0 ? -50 : 50,
+                                    translateY: -50,
+                                }}
+                                animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                                transition={{ duration: 0.3, delay: id * 0.2 }}>
                                 <Card className="w-full h-auto object-cover max-w-full rounded-lg shadow-md relative overflow-hidden" imgSrc={job?.companyProfileImage} horizontal="true">
                                     <h5 className="text-2xl main-color font-bold tracking-tight text-gray-900 dark:text-white">{job?.title}</h5>
 
@@ -201,17 +174,16 @@ const Dashboard = () => {
 
                                     <div className='flex justify-start gap-4'>
                                         <Link href={{ pathname: `/dashboard/jobs/edit/${job?.id}` }} className='joobify-main-color text-white px-4 py-2 shadow-md rounded-lg'><TiEdit className='text-[1rem] inline-block' /></Link>
-                                        
+
                                         <DeleteJob jobID={job?.id} />
                                     </div>
 
                                     <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
-                                    <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>
+
+                                    {job?.updatedOn ? (<p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>) : (<></>)}
                                 </Card>
-                        </Link>
-                        */}
-                            </>
-                        )) : <p className='text-md black-color text-center flex justify-center items-center'>{error}</p>}
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </main>
