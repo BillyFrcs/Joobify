@@ -54,34 +54,36 @@ const JobDetail = ({ params }) => {
 
             <main className='container flex flex-col md:order-2 ml-9 pl-5 pt-20'>
                 <div className='bg-[#5B71C8] justify-start min-w-max rounded-job-detail rounded-sm h-[5rem] flex'>
-                    <h1 className='font-bold main-font text-white text-3xl ml-5 mt-5'>{job.data.title}</h1>
+                    <h1 className='font-bold main-font text-white text-3xl ml-5 mt-5'>{job?.data.title}</h1>
 
-                    <a href={`mailto:${job.data.email}`}>
-                        <h2 className='font-medium main-font text-white text-1xl ml-5 mt-7'>{job.data.email}</h2>
+                    <a href={`mailto:${job?.data.email}`}>
+                        <h2 className='font-medium main-font text-white text-1xl ml-5 mt-7'>{job?.data.email}</h2>
                     </a>
 
                     <h2 className='font-medium main-font text-white text-1xl ml-5 mt-7'>
-                        <FaBuilding className='inline-block' /> {job.data.companyName}
+                        <FaBuilding className='inline-block' /> {job?.data.companyName}
                     </h2>
                     <h2 className='font-medium main-font text-white text-1xl ml-5 mt-7'>
-                        <FaLocationDot className='inline-block' /> {job.data.location}
+                        <FaLocationDot className='inline-block' /> {job?.data.location}
                     </h2>
-                    <h2 className='font-bold main-font black-color bg-white rounded-md shadow-md border-[3px] border-[#373737] w-auto h-9 text-2xl ml-5 mt-5'>{job.data.jobType}</h2>
+                    <h2 className='font-bold main-font black-color bg-white rounded-md shadow-md border-[3px] border-[#373737] w-auto h-9 text-2xl ml-5 mt-5'>{job?.data.jobType}</h2>
                 </div>
 
                 <div className='mt-10'>
-                    <Image className='company-profile-image rounded-lg' src={job.data.companyProfileImage} alt={job.data.companyName} width={0} height={0} priority={true} />
+                    <Image className='company-profile-image rounded-lg' src={job?.data.companyProfileImage} alt={job?.data.companyName} width={0} height={0} priority={true} />
 
                     <div className='mt-10'>
                         <h2 className='font-medium main-font black-color text-2xl'>Deskripsi Pekerjaan :</h2>
 
-                        <p className='mt-5 main-font black-color'>{job.data.jobDescription}</p>
+                        <p className='mt-5 main-font black-color'>{job?.data.jobDescription}</p>
                     </div>
 
-                    <p className="font-medium text-gray-700 dark:text-gray-400 text-1xl mt-10 whitespace-normal text-end">Dibuat pada {job.data.postedOn}</p>
+                    <p className="font-medium text-gray-700 dark:text-gray-400 text-1xl mt-10 whitespace-normal text-end">Dibuat pada {job?.data.postedOn}</p>
 
+                    {job?.data.updatedOn ? (<p className="font-medium text-gray-700 dark:text-gray-400 text-1xl mt-1 whitespace-normal text-end">Diubah pada {job?.data.updatedOn}</p>) : (<></>)}
+                    
                     <div className='flex justify-start gap-4 mb-20'>
-                        <a href={`mailto:${job.data.email}`}>
+                        <a href={`mailto:${job?.data.email}`}>
                             <Button type='submit' className='flex btn-style w-[10rem] h-auto light-font joobify-main-color'>Hubungi kami</Button>
                         </a>
 
