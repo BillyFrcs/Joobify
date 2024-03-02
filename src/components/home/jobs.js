@@ -264,7 +264,7 @@ const JobsList = () => {
 
                     <div className='container mt-[5rem] mb-10 grid grid-cols-2 gap-4 justify-center items-center'>
                         {!isSearching ? (
-                            jobs.data.map((job, id) => (
+                            jobs?.data.map((job, id) => (
                                 <motion.div key={id}
                                     initial={{
                                         opacity: 0,
