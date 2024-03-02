@@ -9,17 +9,45 @@ import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
 import { MdDashboard, MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from "react-icons/ri";
 
+import axios from "axios";
 import Link from 'next/link';
 import Image from 'next/image';
 import ChangeEmailForm from '@/components/account/userEmail';
 import ChangePasswordForm from '@/components/account/userPassword';
 
-import { axiosInstance } from "@/utils/axios";
-import { axiosInstanceMultipart } from '@/utils/axios';
+import { axiosInstance, axiosInstanceMultipart, axiosExternalInstance } from "@/utils/axios";
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
 
-const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, previewUrl, isVisible, error}) => {
+function convertToCamelCase(inputString) {
+    const words = inputString.toLowerCase().split('_');
+  
+    const camelCaseWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  
+    const camelCaseString = camelCaseWords.join('');
+  
+    return camelCaseString;
+}
+  
+const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, previewUrl, isVisible, error }) => {
+    const [location, setLocation] = useState([]);
+
+    useEffect(() => {
+        const apiKey = process.env.GOAPI_API_KEY;
+
+        axiosExternalInstance.get(`/regional/provinsi?api_key=${apiKey}`)
+            .then(response => {
+                // Handle response data here
+                setLocation(response.data.data);
+
+                // console.log(response.data);
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error('Error: ', error);
+            });
+    }, []);
+
     return (
         <>
             <form method='PUT' onSubmit={handleSubmit} className='mt-5'>
@@ -51,9 +79,20 @@ const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, 
                             <input type="text" id="headline" name="headline" value={user?.headline} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Headline" required={true} />
                         </div>
 
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi Domisili</Label>
                             <input type="text" id="location" name="location" value={user?.location} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lokasi domisili" required={true} />
+                        </div> */}
+
+                        <div className='mb-4'>
+                            <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi</Label>
+                            <Select className='' id="location" name="location" onChange={handleChange} required>
+                                <option>Pilih lokasi anda</option>
+
+                                {location?.map((loc, index) => (
+                                    <option key={index} value={convertToCamelCase(loc?.name)}>{convertToCamelCase(loc?.name)}</option>
+                                ))}
+                            </Select>
                         </div>
 
                         <Label htmlFor="userProfileImage" className="dark:hover:bg-bray-800 mb-10 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600">

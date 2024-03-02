@@ -91,7 +91,7 @@ const Profile = () => {
                             <h1 className="font-bold mt-1 text-white text-2xl">Nomor Telepon</h1>
                             <p className="font-medium main-font mt-1 text-white text-1xl">{user?.phoneNumber}</p>
 
-                            <h1 className="font-bold mt-1 text-white text-2xl">Domisili</h1>
+                            <h1 className="font-bold mt-1 text-white text-2xl">Lokasi</h1>
                             <p className="font-medium main-font mt-1 text-white text-1xl">{user?.location}</p>
                         </div>
                     </div>

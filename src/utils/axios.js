@@ -16,6 +16,13 @@ const axiosInstanceMultipart = axios.create({
     }
 });
 
+const axiosExternalInstance = axios.create({
+    baseURL: process.env.GOAPI_ENDPOINT,
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
+
 /*
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
@@ -44,4 +51,4 @@ axiosInstance.interceptors.response.use(
 );
 */
 
-export { axiosInstance, axiosInstanceMultipart };
+export { axiosInstance, axiosInstanceMultipart, axiosExternalInstance };

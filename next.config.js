@@ -6,6 +6,8 @@ const nextConfig = {
     swcMinify: true,
     env: {
         JOOBIFY_ENDPOINT: process.env.JOOBIFY_ENDPOINT,
+        GOAPI_ENDPOINT: process.env.GOAPI_ENDPOINT,
+        GOAPI_API_KEY: process.env.GOAPI_API_KEY,
         API_KEY: process.env.API_KEY,
         AUTH_DOMAIN: process.env.AUTH_DOMAIN,
         DATABASE_URL: process.env.DATABASE_URL,
