@@ -76,7 +76,7 @@ const JobsList = () => {
                     setIsVisible(false);
                 }, 5000);
 
-                setError('Mohon masukan pekerjaan yang ingin dicari!');
+                setError('Mohon masukan pekerjaan yang ingin dicari');
 
                 return;
             }
