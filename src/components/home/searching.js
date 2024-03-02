@@ -32,8 +32,6 @@ const JobSearching = ({ query, searchResults }) => {
                             <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Dibuat pada {job?.postedOn}</p>
                             
                             {job?.updatedOn ? (<p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p>) : (<></>)}
-
-                            {/* <p className="font-light text-gray-700 dark:text-gray-400 text-[10px] whitespace-normal text-end">Diubah pada {job?.updatedOn}</p> */}
                         </Card>
                     </Link>
                 </motion.div>
