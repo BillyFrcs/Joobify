@@ -19,14 +19,14 @@ import { axiosInstance, axiosInstanceMultipart, axiosExternalInstance } from "@/
 import { MinimalNavigation } from '@/components/layouts/navbar';
 import { firebaseApp } from '@/config/firebaseApp';
 
-function convertToCamelCase(inputString) {
-    const words = inputString.toLowerCase().split('_');
+function ConvertToPascalCase(inputString) {
+    const words = inputString.toLowerCase().split(' ');
   
-    const camelCaseWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    const pascalCaseWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
   
-    const camelCaseString = camelCaseWords.join('');
+    const pascalCaseString = pascalCaseWords.join(' ');
   
-    return camelCaseString;
+    return pascalCaseString;
 }
   
 const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, previewUrl, isVisible, error }) => {
@@ -90,7 +90,7 @@ const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, 
                                 <option>Pilih lokasi anda</option>
 
                                 {location?.map((loc, index) => (
-                                    <option key={index} value={convertToCamelCase(loc?.name)}>{convertToCamelCase(loc?.name)}</option>
+                                    <option key={index} value={ConvertToPascalCase(loc?.name)}>{ConvertToPascalCase(loc?.name)}</option>
                                 ))}
                             </Select>
                         </div>
