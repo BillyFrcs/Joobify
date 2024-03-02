@@ -21,14 +21,14 @@ import { firebaseApp } from '@/config/firebaseApp';
 
 function ConvertToPascalCase(inputString) {
     const words = inputString.toLowerCase().split(' ');
-  
+
     const pascalCaseWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-  
+
     const pascalCaseString = pascalCaseWords.join(' ');
-  
+
     return pascalCaseString;
 }
-  
+
 const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, previewUrl, isVisible, error }) => {
     const [location, setLocation] = useState([]);
 
@@ -86,9 +86,7 @@ const UserProfileForm = ({ user, handleChange, handleSubmit, handleImageChange, 
 
                         <div className='mb-4'>
                             <Label htmlFor="location" className="black-color w-80 block mb-2 text-sm font-bold text-gray-900 dark:text-white light-font">Lokasi</Label>
-                            <Select className='' id="location" name="location" onChange={handleChange} required>
-                                <option>Pilih lokasi anda</option>
-
+                            <Select id="location" name="location" value={user?.location} onChange={handleChange} placeholder="Pilih lokasi" required>
                                 {location?.map((loc, index) => (
                                     <option key={index} value={ConvertToPascalCase(loc?.name)}>{ConvertToPascalCase(loc?.name)}</option>
                                 ))}
