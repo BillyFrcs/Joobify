@@ -253,9 +253,9 @@ const JobsList = () => {
                             </svg>
                         </div> */}
 
-                        <input type="text" id="job-search" onChange={(event) => setQuery(event.target.value)} value={query} className="w-auto search-input block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pekerjaan apa yang ingin anda cari ?" required />
+                        <input type="text" id="job-search" name='job-search' onChange={(event) => setQuery(event.target.value)} value={query} className="w-auto search-input block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pekerjaan apa yang ingin anda cari ?" required />
 
-                        <Button type='button' onClick={handleSearch} className="joobify-black-color main-btn h-auto w-[8rem] ml-[-8.5rem] bottom-[0rem] focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Cari</Button>
+                        <Button type='submit' onClick={handleSearch} className="joobify-black-color main-btn h-auto w-[8rem] ml-[-8.5rem] bottom-[0rem] focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Cari</Button>
 
                         {/* <Button type='submit' className="joobify-black-color main-btn absolute end-2.5 bottom-1.5 focus:ring-4 focus:outline-none rounded-lg font-medium text-sm">Search</Button> */}
                     </div>
